@@ -28,25 +28,23 @@ public class SVPeliculas extends HttpServlet {
 		if("seleccionar".equals(request.getParameter("accion"))) {
 			int idPelicula = Integer.parseInt(request.getParameter("idPelicula"));
 			pSel = servicioPeliculas.buscar(idPelicula);
-			request.setAttribute("pSel",pSel);
 		}
+		request.setAttribute("pSel",pSel);
 		
 		List<Pelicula> peliculas = servicioPeliculas.listarTodos();
 		request.setAttribute("peliculas", peliculas);
 		
-		request.getRequestDispatcher("paginaPeliculas.jsp").forward(request,response);				
+		request.getRequestDispatcher("paginaPeliculas.jsp").forward(request,response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Vemos el idioma del usuario que está en la sesion:
+		/*
 		HttpSession sesion = request.getSession(false);
 		Usuario usr = (Usuario) sesion.getAttribute("usuario");
-		
-		/*
 		//Cargamos el fichero de traducciones:
-		ResourceBundle rb = ResourceBundle.
-			getBundle("i18n/etiquetas", new Locale(usr.getIdioma()));
+		ResourceBundle rb = ResourceBundle.getBundle("i18n/etiquetas", new Locale(usr.getIdioma()));
 		*/
 		
 		request.getRequestDispatcher("procesarPelicula.jsp").include(request,response);
@@ -57,12 +55,11 @@ public class SVPeliculas extends HttpServlet {
 		String accion = request.getParameter("accion");
 		
 		System.out.println(accion);
-		
-		ServicioPeliculas gp = new ServicioPeliculas();
+
 		if("guardar".equals(accion)){			
-			gp.guardar(pelicula);
+			servicioPeliculas.guardar(pelicula);
 		} else if("borrar".equals(accion)){			
-			gp.borrar(pelicula);
+			servicioPeliculas.borrar(pelicula);
 		}
 		
 		response.sendRedirect("SVPeliculas");

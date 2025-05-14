@@ -49,8 +49,7 @@ public class SVClientes extends HttpServlet {
 			//
 		}		
 		
-		request.getRequestDispatcher(siguienteVista).
-			forward(request,response);		
+		request.getRequestDispatcher(siguienteVista).forward(request,response);		
 	}
 	
 	//POST usado para lo siguiente
@@ -82,7 +81,7 @@ public class SVClientes extends HttpServlet {
 		String accion = request.getParameter("accion");
 		//Llamar al método de negocio adecuado segun la acción
 		switch(accion) {
-		case "insertar" : 
+			case "insertar" : 
 				servicioClientes.insertar(c);
 				break;
 			case "modificar" :

@@ -9,8 +9,6 @@
 </head>
 <body>
 
-	<!-- scriplet -->
-
 	<h1 align="center">
 		<font color="lightBlue">
 			Listado de Incidencias
@@ -39,7 +37,6 @@
 		}
 		%>
 	</table>
-
 
 </body>
 </html>

@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import="com.curso.modelo.entidad.Usuario"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+
+<%
+//Usuario usr = (Usuario) session.getAttribute("usuario");
+//out.println(usr.getIdioma());
+//${usuario.nombre}
+%>
 
 <fmt:setLocale value="${usuario.idioma}"/>
 <fmt:bundle basename="i18n/etiquetas">
@@ -24,7 +33,6 @@ window.onload = function(){
 			enviar("borrar")
 		}	
 }
-
 
 </script>
 
@@ -90,6 +98,7 @@ window.onload = function(){
 				<th><fmt:message key="year"/></th>			
 			</tr>
 		</thead>
+		
 		<tbody>
 			<c:forEach items="${peliculas}" var="p">
 				<c:set var="color" value="white"/>

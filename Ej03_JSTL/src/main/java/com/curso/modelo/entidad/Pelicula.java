@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Pelicula implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idPelicula;
 	private String titulo;
 	private String director;
@@ -13,7 +15,6 @@ public class Pelicula implements Serializable {
 
 	public Pelicula() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Pelicula(int idPelicula, String titulo, String director,

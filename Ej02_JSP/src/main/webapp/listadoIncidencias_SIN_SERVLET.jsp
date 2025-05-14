@@ -15,7 +15,6 @@
 		</font>
 	</h1>
 
-
 	<table align="center" border="1">
 		<tr>
 			<th>Descripción</th>
@@ -26,16 +25,16 @@
 		ServicioIncidencias servicioIncidencias = new ServicioIncidencias();	
 		List<Incidencia> incidencias = servicioIncidencias.listar();
 		for(Incidencia i: incidencias){
-		 %>
+		%>
 		 	<tr>
 		 		<td>
-		 			<!-- %out.println(i.getDescripcion());%> -->
+		 			<%out.println(i.getDescripcion());%>
 		 			<%=i.getDescripcion()%>
 		 		</td>
 		 		<td><%=i.getEmpleado()%></td>
 		 		<td><%=i.getEstado()%></td>
 		 	</tr>
-		 <%			
+		<%			
 		}
 		%>
 	</table>

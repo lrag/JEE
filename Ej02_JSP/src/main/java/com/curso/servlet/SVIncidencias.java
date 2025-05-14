@@ -22,6 +22,10 @@ public class SVIncidencias extends HttpServlet {
 		List<Incidencia> incidencias = servicioIncidencias.listar();
 		request.setAttribute("incidencias", incidencias);
 		request.getRequestDispatcher("WEB-INF/paginas/listadoIncidencias.jsp").forward(request, response);
+		System.out.println("Este código se ejecuta igualmente, pero hemos perdido ya el control de la petición");
 	}
 	
 }
+
+
+

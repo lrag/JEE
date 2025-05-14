@@ -33,6 +33,7 @@ public class SVLogin extends HttpServlet {
 			//Obtenemos una sesión utilizando el objeto request
 			HttpSession sesion = request.getSession(true);
 			//Dejamos el usuario como atributo en la sesión:
+			usr.setPw(null);
 			sesion.setAttribute("usuario",usr);
 			response.sendRedirect("SVPeliculas");
 		} else {

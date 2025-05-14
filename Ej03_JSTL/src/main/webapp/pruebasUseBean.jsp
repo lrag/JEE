@@ -2,19 +2,19 @@
     pageEncoding="ISO-8859-1"
     import="com.curso.modelo.entidad.Pelicula"%>
 
-<jsp:usebean id="p1" class="modelo.Pelicula" scope="page"/>   
+<jsp:usebean id="p1" class="com.curso.modelo.entidad.Pelicula" scope="page"/>   
 <%
 Pelicula p1Bis = new Pelicula();
 %>
 
-<jsp:usebean id="p2" class="modelo.Pelicula" scope="page"/>
+<jsp:usebean id="p2" class="com.curso.modelo.entidad.Pelicula" scope="page"/>
 <jsp:setProperty name="p2" property="titulo" value="Sin perdon"/>
 <%
 Pelicula p2Bis = new Pelicula();
 p2Bis.setTitulo("Sin perdon");
 %>
 
-<jsp:usebean id="p3" class="modelo.Pelicula" scope="page"/>
+<jsp:usebean id="p3" class="com.curso.modelo.entidad.Pelicula" scope="page"/>
 <jsp:setProperty name="p3" property="idPelicula" param="idPelicula"/>
 <jsp:setProperty name="p3" property="titulo" param="titulo"/>
 <jsp:setProperty name="p3" property="director" param="director"/>
@@ -28,7 +28,7 @@ p3Bis.setTitulo(request.getParameter("titulo"));
 p3Bis.setDirector(request.getParameter("director"));
 %>
 
-<jsp:usebean id="p4" class="modelo.Pelicula" scope="page"/>
+<jsp:usebean id="p4" class="com.curso.modelo.entidad.Pelicula" scope="page"/>
 <jsp:setProperty name="p4" property="*"/>
 <%
 int idPelicula2 = 0;
@@ -44,8 +44,8 @@ String observaciones = request.getParameter("observaciones");
 Pelicula pelicula = new Pelicula(idPelicula2,titulo,director,genero,year,observaciones);
 %>
 
-<jsp:usebean id="p5" class="modelo.Pelicula" scope="request"/>
-<jsp:setProperty name="p4" property="*"/>
+<jsp:usebean id="p5" class="com.curso.modelo.entidad.Pelicula" scope="request"/>
+<jsp:setProperty name="p5" property="*"/>
 <%
 int idPelicula3 = 0;
 if(request.getParameter("idPelicula")!=null)
