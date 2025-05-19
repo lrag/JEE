@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Ej09_EJB_EAR</artifactId>
+	
+	<parent>
+		<groupId>com.curso</groupId>
+		<artifactId>Ej09_Parent_POM</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../Ej09_Parent_POM</relativePath>
+	</parent>	
+
+	<packaging>ear</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<earSourceDirectory>EarContent</earSourceDirectory>
+					<generateApplicationXml>false</generateApplicationXml>
+					<version>8</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.curso</groupId>
+			<artifactId>Ej09_EJB_Modelo</artifactId>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.curso</groupId>
+			<artifactId>Ej09_EJB_Interfaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.curso</groupId>
+			<artifactId>Ej09_EJB_Web</artifactId>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+</project>
+
+

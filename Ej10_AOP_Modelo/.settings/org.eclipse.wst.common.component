@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+            
+    
+    <wb-module deploy-name="Ej10_AOP_Modelo">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/test/resources"/>
+        <wb-resource deploy-path="/" source-path="/target/generated-test-sources/test-annotations"/>
+                        
+        
+        <property name="java-output-path" value="/Ej10_AOP_Modelo/build/classes"/>
+                        
+        
+        <property name="ClientProject" value="Ej06_AOP_Modelo_Interfaces"/>
+                        
+        
+        <property name="ClientJARURI" value="Ej06_AOP_Modelo_Interfaces.jar"/>
+                    
+    
+    </wb-module>
+        
+
+</project-modules>

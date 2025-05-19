@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: Ej06_AOP_Modelo_Interfaces.jar
+

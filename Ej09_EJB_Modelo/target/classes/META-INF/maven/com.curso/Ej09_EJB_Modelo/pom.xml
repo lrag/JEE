@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Ej09_EJB_Modelo</artifactId>
+	<packaging>ejb</packaging>
+
+	<parent>
+		<groupId>com.curso</groupId>
+		<artifactId>Ej09_Parent_POM</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../Ej09_Parent_POM</relativePath>
+	</parent>
+
+	<build>
+		<sourceDirectory>ejbModule</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>ejbModule</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<ejbVersion>3.2</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.curso</groupId>
+			<artifactId>Ej09_EJB_Interfaces</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

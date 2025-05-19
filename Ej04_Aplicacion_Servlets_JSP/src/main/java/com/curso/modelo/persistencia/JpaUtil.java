@@ -7,7 +7,7 @@ public class JpaUtil {
 
 	private static EntityManagerFactory emf;
 	
-	public static EntityManagerFactory getEMF(){
+	public synchronized static EntityManagerFactory getEMF(){
 		
 		if(emf == null){
 			emf = Persistence.createEntityManagerFactory("H2PU");

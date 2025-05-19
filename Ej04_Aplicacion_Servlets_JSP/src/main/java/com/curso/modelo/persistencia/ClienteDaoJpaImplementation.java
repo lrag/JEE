@@ -2,10 +2,12 @@ package com.curso.modelo.persistencia;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.curso.modelo.entidad.Cliente;
 
 public class ClienteDaoJpaImplementation implements ClienteDao {
-
+	
 	public void insertar(Cliente cliente){
 		EntityManager em = JpaUtil.getEMF().createEntityManager();
 		em.getTransaction().begin();
@@ -44,6 +46,5 @@ public class ClienteDaoJpaImplementation implements ClienteDao {
 		em.close();			
 		return clientes;
 	}
-	
-	
+		
 }
