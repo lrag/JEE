@@ -17,7 +17,7 @@ public class PeliculaDao {
 	private EntityManager em;
 	
     public PeliculaDao() {
-
+    	System.out.println("INSTANCIANDO PELICULA_DAO");
     }
 
     public void insertar(Pelicula pelicula) {

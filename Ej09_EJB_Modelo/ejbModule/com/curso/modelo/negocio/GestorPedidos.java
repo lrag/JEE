@@ -15,6 +15,7 @@ import javax.ejb.Stateful;
 
 @Stateful
 @LocalBean
+//Los EJB de sesión con estado deben ser serializables
 public class GestorPedidos implements GestorPedidosLocal {
 
 	@EJB
@@ -35,17 +36,17 @@ public class GestorPedidos implements GestorPedidosLocal {
     
     @PostConstruct
     public void inicializar() {
-    	System.out.println("@PostConstruct");
+    	System.out.println("@PostConstruct de GestorPedidos");
     	cesta = new ArrayList<>();
     }
     
     @PreDestroy
     public void finalizar() {
     	//Codigo para liberar recursos que no pertenezcan a la JVM
-    	System.out.println("@Predestroy");
+    	System.out.println("@Predestroy de GestorPedidos");
     }
     
-    //Ciclo de vida espec�fico para los ejb de sesi�n con estado
+    //Ciclo de vida específico para los ejb de sesion con estado
     private transient Socket sk; //En el post construct se inicializar�a este socket
     
     @PrePassivate
@@ -59,7 +60,7 @@ public class GestorPedidos implements GestorPedidosLocal {
     }
     
     @Remove
-    //Este método debe estar publicado en las interfaces
+    //Este método debe estar publicado en las interfaces para que los clientes puedan invocarlo
     public void remove() {
     	System.out.println("Llamadita al remove");
     }
@@ -70,7 +71,7 @@ public class GestorPedidos implements GestorPedidosLocal {
     		System.out.println("Producto rechazado "+producto);
     		return false;
     	}
-    	System.out.println("A�adiendo el producto "+producto);
+    	System.out.println("Añadiendo el producto "+producto);
     	cesta.add(producto);
     	return true;
     }

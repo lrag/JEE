@@ -29,27 +29,27 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	private PeliculaDao peliculaDao;
 	
 	public GestorPeliculas() {
+		System.out.println("INSTANCIANDO GESTOR_PELICULAS");
 	}
 	
 	@Override
 	//@Interceptors({ InterceptorLog.class, InterceptorCronometro.class })
-	@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class })
+	//@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
+	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertar(Pelicula pelicula) throws PeliculaException {
+		
+		System.out.println("HABER SI DESPLIEGA ESTO");
+		
 		System.out.print("GestorPeliculas, insertar:"+pelicula.getTitulo()+"...");
-		/*try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
 		
 		if( pelicula.getTitulo() == null) {
 			System.out.println("ERROR!");
 			
 			//Set rollback only es definitio: no podemos retractarnos
-			//sCtx.setRollbackOnly();
+			sCtx.setRollbackOnly();
 			
 			//Mejor controlarlo con excepciones
-			throw new PeliculaException("El titulo es obligatorio");
+			//throw new PeliculaException("El titulo es obligatorio");
 			
 			//boolean x = sCtx.getRollbackOnly();
 		}
@@ -57,19 +57,21 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 		peliculaDao.insertar(pelicula);
 	}
 
+	/*
+	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
+	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
+		for(Pelicula pAux: peliculas) {
+			this.insertar(pAux);
+		}
+	}
+	*/
+	
 	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
 		for(Pelicula pAux: peliculas) {
 			
-			/*
-			Mejor controlamos la detencion del proceso con excepciones
-			if(sCtx.getRollbackOnly()) {
-				break;
-			}
-			*/
-			
-			//Si invocamos el metodo insertar sin pasar por el ejb object
-			//cualquier anotaciÛn que tenga se ignorar·
+			//Si invocamos el metodo 'insertar' sin pasar por el ejb object
+			//cualquier anotaci√≥n que tenga se ignorar√°
 			//this.insertar(pAux);
 			
 			//Obtenemos el ejbObj del session context
@@ -80,8 +82,14 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 			GestorPeliculasLocal ejbObj = (GestorPeliculasLocal) sCtx.getBusinessObject(GestorPeliculasLocal.class);
 			ejbObj.insertar(pAux);
 			
+			//Mejor controlamos la detencion del proceso con excepciones
+			if(sCtx.getRollbackOnly()) {
+				break;
+			}			
+			
 		}
 	}
+	
 	
 	@Override
 	public void modificar(Pelicula pelicula) {

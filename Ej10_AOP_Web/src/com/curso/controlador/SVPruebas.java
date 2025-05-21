@@ -27,10 +27,21 @@ public class SVPruebas extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//Pruebas interceptores 
-		//Pelicula p = new Pelicula(null, "Die Hard", "John McTiernan", "Accion", "1989");
-		//gestorPeliculas.insertar(p);
-		//gestorPeliculas.borrar(p);
+		/*
+		try {
+			Pelicula p1 = new Pelicula(null, "Die Hard", "John McTiernan", "Accion", "1989");
+			Pelicula p2 = new Pelicula(null, "Depredador", "John McTiernan", "Accion", "1989");
+			gestorPeliculas.insertar(p1);
+			gestorPeliculas.insertar(p2);
+			gestorPeliculas.borrar(p1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
+		
+		
 		
 		@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 		List<Pelicula> peliculas = new ArrayList() {{
@@ -47,11 +58,10 @@ public class SVPruebas extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		gestorPeliculas.listarTodas()
-			.stream()
-				.forEach( p -> System.out.println(p));
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		gestorPeliculas.listarTodas().forEach( p -> System.out.println(p));
+		
+		response.getWriter().append("Hola que tal: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

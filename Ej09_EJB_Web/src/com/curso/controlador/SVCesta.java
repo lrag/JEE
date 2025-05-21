@@ -18,6 +18,8 @@ import com.curso.modelo.negocio.GestorPedidosLocal;
 public class SVCesta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	//No podemos inyectar así un EJB de sesión con estado porque
+	//un servlet es un singleton
 	//@EJB
 	//private GestorPedidosLocal gestorPedidos;
 	
