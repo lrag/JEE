@@ -35,16 +35,16 @@ public class EmisorCola {
 				(QueueConnectionFactory) ic.lookup("jms/RemoteConnectionFactory");
 			
 			QueueConnection qcx = queueConnFac.createQueueConnection("user", "useruser"); 
-			//1er par�metro: si hay transaccion o no
-			//2� par�metro: Como se realiza el ACK del mensaje
+			//1er parámetro: si hay transaccion o no
+			//2º  parámetro: Como se realiza el ACK del mensaje
 			QueueSession sesion = qcx.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			//QueueSession sesion = qcx.createQueueSession(false, QueueSession.CLIENT_ACKNOWLEDGE);
 			
 			//Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
-			Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
+			Queue cola = (Queue) ic.lookup("jms/cola");
 			MessageProducer productor = sesion.createProducer(cola);
 
-			//Arrancamos la conex�n
+			//Arrancamos la conexón
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor

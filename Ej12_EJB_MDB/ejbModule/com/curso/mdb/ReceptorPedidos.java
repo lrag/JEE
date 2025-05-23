@@ -12,14 +12,15 @@ import com.curso.modelo.negocio.GestorPedidos;
 
 
 @MessageDriven(
+			/*
 			activationConfig = {
 					@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:jms/topic"),
 					@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic") 
-			}/*, 
+			},*/ 
 			activationConfig = {
 					@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:jms/cola"),
 					@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") 
-			}, 
+			}/*, 
 			mappedName = "jms/queue/pruebas"
 			*/
 		)

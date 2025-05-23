@@ -22,20 +22,19 @@ public class EmisorColaPrioridad {
 
 			QueueConnectionFactory queueConnFac = (QueueConnectionFactory) ic.lookup("jms/RemoteConnectionFactory");
 			QueueConnection qcx = queueConnFac.createQueueConnection("user","useruser"); 
-			//1er par�metro: si hay transaccion o no
-			//2� par�metro: Como se realiza el ACK del mensaje
+			//1er parámetro: si hay transaccion o no
+			//2º parámetro: Como se realiza el ACK del mensaje
 			QueueSession sesion = qcx.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			
 			Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
 			MessageProducer productor = sesion.createProducer(cola);
-			productor.setPriority(8);
+			productor.setPriority(4);
 			
-			//Arrancamos la conexi�n
+			//Arrancamos la conexián
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor
-			TextMessage txtMsg = sesion.createTextMessage("HOLA RADIOLA");
-			
+			TextMessage txtMsg = sesion.createTextMessage("EL QUE SABE SABA");
 			txtMsg.setIntProperty("cantidad", 400);
 			
 			productor.send(txtMsg);			

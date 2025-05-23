@@ -46,10 +46,10 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 			System.out.println("ERROR!");
 			
 			//Set rollback only es definitio: no podemos retractarnos
-			sCtx.setRollbackOnly();
+			//sCtx.setRollbackOnly();
 			
 			//Mejor controlarlo con excepciones
-			//throw new PeliculaException("El titulo es obligatorio");
+			throw new PeliculaException("El titulo es obligatorio");
 			
 			//boolean x = sCtx.getRollbackOnly();
 		}
@@ -79,13 +79,14 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 			System.out.println("=========================================");
 			System.out.println(sCtx.getBusinessObject(GestorPeliculasLocal.class));
 			
+			//Podríamos (deberíamos) declarar el EJBObject como un atributo de la clase)
 			GestorPeliculasLocal ejbObj = (GestorPeliculasLocal) sCtx.getBusinessObject(GestorPeliculasLocal.class);
 			ejbObj.insertar(pAux);
 			
 			//Mejor controlamos la detencion del proceso con excepciones
-			if(sCtx.getRollbackOnly()) {
-				break;
-			}			
+			//if(sCtx.getRollbackOnly()) {
+			//	break;
+			//}			
 			
 		}
 	}

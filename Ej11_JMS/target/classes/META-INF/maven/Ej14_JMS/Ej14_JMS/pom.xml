@@ -19,19 +19,19 @@
 
 	<dependencies>
 	
+		<!--
 		<dependency>
 		    <groupId>org.apache.activemq</groupId>
 		    <artifactId>activemq-client</artifactId>
 		    <version>5.14.3</version>
 		</dependency>
+		-->
 		
-<!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-client-all -->
-<dependency>
-    <groupId>org.wildfly</groupId>
-    <artifactId>wildfly-client-all</artifactId>
-    <version>18.0.1.Final</version>
-</dependency>
-
+		<dependency>
+		    <groupId>org.wildfly</groupId>
+		    <artifactId>wildfly-client-all</artifactId>
+		    <version>18.0.1.Final</version>
+		</dependency>
 
 		<dependency>
 		    <groupId>javax.jms</groupId>

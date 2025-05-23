@@ -32,8 +32,8 @@ public class EmisorTopic {
 			TopicConnectionFactory topicConnFac = 
 				(TopicConnectionFactory) ic.lookup("jms/RemoteConnectionFactory");
 			TopicConnection qcx = topicConnFac.createTopicConnection("user","useruser"); 
-			//1er par�metro: si hay transaccion o no
-			//2� par�metro: Como se realiza el ACK del mensaje
+			//1er parámetro: si hay transaccion o no
+			//2º parámetro: Como se realiza el ACK del mensaje
 			TopicSession sesion = qcx.createTopicSession(false, TopicSession.AUTO_ACKNOWLEDGE);
 			//TopicSession sesion = qcx.createTopicSession(false, TopicSession.CLIENT_ACKNOWLEDGE);
 			
@@ -44,7 +44,7 @@ public class EmisorTopic {
 			
 			TopicPublisher productor = sesion.createPublisher(topic);
 
-			//Arrancamos la conex�n
+			//Arrancamos la conexán
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor

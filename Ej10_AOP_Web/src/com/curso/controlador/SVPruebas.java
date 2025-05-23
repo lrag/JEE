@@ -49,7 +49,7 @@ public class SVPruebas extends HttpServlet {
 			add(new Pelicula(null, "T2","D2","G2","2002"));
 			add(new Pelicula(null, "T3","D3","G3","2003"));
 			add(new Pelicula(null, "T4","D4","G4","2004"));
-			add(new Pelicula(null, null,"D5","G5","2005"));
+			add(new Pelicula(null, "T5","D5","G5","2005"));
 		}};
 		try {
 			gestorPeliculas.insertarPeliculas(peliculas);
