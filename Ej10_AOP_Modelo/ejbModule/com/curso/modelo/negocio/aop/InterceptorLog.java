@@ -1,6 +1,8 @@
 package com.curso.modelo.negocio.aop;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +10,8 @@ import javax.annotation.PreDestroy;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
-//La clase no tiene anotaciones pero ser� manejada por el contenedor
+//POJO
+//La clase no tiene anotaciones pero será manejada por el contenedor
 public class InterceptorLog {
 
 	//Un interceptor puede recibir inyecciones...
@@ -25,17 +28,17 @@ public class InterceptorLog {
 	}
 	
 	@PostConstruct
-	public void inicializar() {
+	public void inicializar() throws IOException {
 		System.out.println("INICIALIZANDO INTERCEPTOR_LOG");
-		//FileWriterfw = new FileWriter("log.txt");
-		//BufferedWriter bw = new BufferedWriter(fw);
+		FileWriter fw = new FileWriter("D:/log.txt");
+		bw = new BufferedWriter(fw);
 	}
 	
 	@PreDestroy
-	public void preDestroy() {
+	public void preDestroy() throws IOException {
 		System.out.println("FINALIZANDO INTERCEPTOR_LOG");
-		//bw.flush();
-		//bw.close();
+		bw.flush();
+		bw.close();
 	}
 		
 	@AroundInvoke
@@ -44,10 +47,9 @@ public class InterceptorLog {
 		iCtx.getMethod();     //A qúe método se está llamando
 		iCtx.getParameters(); //Con que parámetros se está invocando
 		iCtx.getTarget();     //El verdadero EJB
-
-		//bw.write("bla bla blá");
+		
+		bw.write("INTERCEPTOR_LOG: Llamada al método "+iCtx.getMethod().getName()+". Hora:"+new Date()+"---"+iCtx.getTarget());
 		System.out.println("INTERCEPTOR_LOG: Llamada al método "+iCtx.getMethod().getName()+". Hora:"+new Date()+"---"+iCtx.getTarget());
-		//cerrarfichero
 		
 		//Antes de invocar al target
 		Object retorno = iCtx.proceed();

@@ -2,6 +2,7 @@ package com.curso.modelo.negocio;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -19,44 +20,51 @@ import com.curso.modelo.persistencia.PeliculaDao;
 
 @Singleton
 //@LocalBean
-@Interceptors({ InterceptorLog.class, InterceptorCronometro.class })
+@Interceptors({ InterceptorLog.class , InterceptorCronometro.class })
 public class GestorPeliculas implements GestorPeliculasLocal {
 
 	@Resource
 	private SessionContext sCtx;
+	
+	private GestorPeliculasLocal ejbObj;
+	
 		
 	@EJB
 	private PeliculaDao peliculaDao;
 	
 	public GestorPeliculas() {
 		System.out.println("INSTANCIANDO GESTOR_PELICULAS");
+		//Demasiado pronto para esto
+		//ejbObj = sCtx.getBusinessObject(GestorPeliculasLocal.class);
 	}
+
+	@PostConstruct
+	public void init() {
+		ejbObj = sCtx.getBusinessObject(GestorPeliculasLocal.class);
+	}	
 	
 	@Override
 	//@Interceptors({ InterceptorLog.class, InterceptorCronometro.class })
-	//@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
-	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
+	//@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
+	@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
 	public void insertar(Pelicula pelicula) throws PeliculaException {
-		
-		System.out.println("HABER SI DESPLIEGA ESTO");
 		
 		System.out.print("GestorPeliculas, insertar:"+pelicula.getTitulo()+"...");
 		
 		if( pelicula.getTitulo() == null) {
 			System.out.println("ERROR!");
-			
 			//Set rollback only es definitio: no podemos retractarnos
 			//sCtx.setRollbackOnly();
+			//boolean x = sCtx.getRollbackOnly();
+			//return;
 			
 			//Mejor controlarlo con excepciones
 			throw new PeliculaException("El titulo es obligatorio");
-			
-			//boolean x = sCtx.getRollbackOnly();
 		}
 		System.out.println("OK");
 		peliculaDao.insertar(pelicula);
 	}
-
+	
 	/*
 	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
@@ -68,6 +76,7 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	
 	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
+		
 		for(Pelicula pAux: peliculas) {
 			
 			//Si invocamos el metodo 'insertar' sin pasar por el ejb object
@@ -75,13 +84,18 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 			//this.insertar(pAux);
 			
 			//Obtenemos el ejbObj del session context
-			
 			System.out.println("=========================================");
 			System.out.println(sCtx.getBusinessObject(GestorPeliculasLocal.class));
 			
 			//Podríamos (deberíamos) declarar el EJBObject como un atributo de la clase)
-			GestorPeliculasLocal ejbObj = (GestorPeliculasLocal) sCtx.getBusinessObject(GestorPeliculasLocal.class);
-			ejbObj.insertar(pAux);
+			GestorPeliculasLocal ejbObj = sCtx.getBusinessObject(GestorPeliculasLocal.class);
+			try {
+				ejbObj.insertar(pAux);
+			} catch (PeliculaException e) {
+				System.out.println("Una película no se ha insertado");
+			}
+			
+			//insertar(pAux);
 			
 			//Mejor controlamos la detencion del proceso con excepciones
 			//if(sCtx.getRollbackOnly()) {
@@ -93,28 +107,79 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	
 	
 	@Override
+	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void modificar(Pelicula pelicula) {
 
 	}
 
 	@Override
+	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void borrar(Pelicula pelicula) {
 		System.out.println("GestorPeliculas, borrar:"+pelicula.getTitulo());
 		try {
 			Thread.sleep(2000);
+			//LN PARA BORRAR EL PRODUCTO...
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
+	@Transactional(value=TxType.SUPPORTS )
 	public Pelicula buscar(Integer id) {
 		return null;
 	}
 
 	@Override
+	@Transactional(value=TxType.SUPPORTS )
 	public List<Pelicula> listarTodas() {
 		return peliculaDao.listar();
 	}
 
 }
+
+
+
+/*
+public class InterceptorTransacciones {
+
+	@PresistenceContext
+	private EntityManager em;
+
+	@AroundInvoke
+	public Object tx(InvocationContext iCtx) throws Exception {
+		
+		//Averiguamos si el método que va a invocarse tiene la anotación @Transactional
+		iCtx.getMethod().getAnotaciones
+		//Si la tiene se examina para ver el valor de la propagación
+
+		Object retorno = null
+		try {		
+			em.getTransaction.begin();
+			//Se invoca al target
+			retorno = iCtx.proceed()
+			if( getRollbackOnly() == true ){
+				em.getTransaction.rollback();
+			} else {
+				em.getTransaction.commit()
+			}		
+		} catch (Exception e){
+			em.getTransaction.rollback();
+			throw
+		}
+		
+	}
+	
+	return retorno	
+}
+
+
+
+
+
+
+*/
+
+
+
+

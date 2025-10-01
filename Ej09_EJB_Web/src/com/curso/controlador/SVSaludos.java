@@ -27,7 +27,7 @@ public class SVSaludos extends HttpServlet {
 	//Un endpoint de JAX-RS
 	//
 	//Resumen:
-	//En cualquier otr aclase manejada por el servidor JEE
+	//En cualquier otra clase manejada por el servidor JEE
 	
 	@EJB(name="Saludador")
 	private SaludadorLocal saludador;
@@ -49,7 +49,8 @@ public class SVSaludos extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		response.getWriter().append("<marquee><h2><font color='lightGreen'>"+saludador.saludar("Luis Ramón")+"</font></h2></marquee>");
+		String saludo = saludador.saludar("Luis Ramón");			
+		response.getWriter().append("<marquee><h2><font color='lightGreen'>"+saludo+"</font></h2></marquee>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

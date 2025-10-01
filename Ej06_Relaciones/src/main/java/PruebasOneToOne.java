@@ -31,14 +31,14 @@ public class PruebasOneToOne {
 		//em.persist(db); //Aqui si
 		
 		//Como hemos definido la relación en las dos clases podriamos, insertando
-		//solo un objeto, insertar los dos
+		//solo un objeto, insertar los dos con un cascade
 		
 		em.persist(c); //-> se insertan los DB por el cascade que hay en Cliente
 		//em.persist(db); //-> se inserta el cliente por el cascade de DatosBancarios
 		
 		em.getTransaction().commit(); 
 		em.close();		
-
+		
 		
 		///////////
 		//CASCADE//
@@ -47,7 +47,7 @@ public class PruebasOneToOne {
 		Integer idCliente = c.getId(); 
 		Integer idDatosBancarios = db.getId();
 		
-		Direccion dd = new Direccion("Madrid", "C/Barquillo", "42", "280001");
+		Direccion dd = new Direccion("Madrid", "C/Barquillo", "42", "28000");
 		Cliente c2 = new Cliente(idCliente, "Montgomery Burns", "555", dd, null);
 		DatosBancarios db2 = new DatosBancarios(idDatosBancarios, "Htb", 7777, c2);
 		c2.setDatosBancarios(db2);

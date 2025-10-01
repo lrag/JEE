@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import com.curso.modelo.entidad.Cliente;
 import com.curso.modelo.entidad.DatosBancarios;
 import com.curso.modelo.entidad.Direccion;
@@ -59,14 +56,14 @@ public class PruebasOneToMany {
 		
 		//Como tenemos cascades en los dos extremos da igual el objeto
 		//que escojamos para hacer el persist...
-		em.persist(c); //Se insertan tb los pedidos en una especie de proceso batch
-		//em.persist(p2);
+		//em.persist(c); //Se insertan tb los pedidos en una especie de proceso batch
+		em.persist(p2);
 		
 		em.getTransaction().commit(); 
 		em.close();		
 
 		System.out.println("Id del cliente:"+c.getId());
-
+		
 		
 		////////////////////
 		//Cargas perezosas//
@@ -80,12 +77,12 @@ public class PruebasOneToMany {
 
 		//c2.getPedidos().size();
 		
+		em.close();
 		
 		for(Pedido pAux: c2.getPedidos()){
 			System.out.println(pAux.getCodigo());
 		}
 		
-		em.close();
 		
 		emf.close();
 		

@@ -21,8 +21,8 @@
 			<th>Empleado</th>
 			<th>Estado</th>
 		</tr>		
-		<%
-		ServicioIncidencias servicioIncidencias = new ServicioIncidencias();	
+		<%  //Scriplet
+		ServicioIncidencias servicioIncidencias = ServicioIncidencias.getInstancia();	
 		List<Incidencia> incidencias = servicioIncidencias.listar();
 		for(Incidencia i: incidencias){
 		%>

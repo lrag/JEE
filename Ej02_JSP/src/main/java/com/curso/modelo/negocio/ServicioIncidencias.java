@@ -6,6 +6,19 @@ import com.curso.modelo.entidad.Incidencia;
 
 public class ServicioIncidencias {
 
+	//private IncidenciaRepo incidenciaRepo;
+
+	private static ServicioIncidencias instancia = new ServicioIncidencias();
+	
+	public static ServicioIncidencias getInstancia() {
+		return instancia;
+	}
+	
+	private ServicioIncidencias() {
+		super();
+	}
+	
+	
 	public List<Incidencia> listar(){
 		return List.of(
 				new Incidencia(1, "Parpadea un fluorescente", "Antúnez", "Pendiente"),
@@ -16,5 +29,6 @@ public class ServicioIncidencias {
 				new Incidencia(6, "Cuando se da la luz en el pasillo suena DONG", "Sr. Smith", "Pendiente")
 			);
 	}
+
 	
 }

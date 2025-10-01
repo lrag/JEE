@@ -24,7 +24,7 @@
 		<%
 		List<Incidencia> incidencias = (List<Incidencia>) request.getAttribute("incidencias");
 		for(Incidencia i: incidencias){
-		 %>
+		%>
 		 	<tr>
 		 		<td>
 		 			<!-- %out.println(i.getDescripcion());%> -->

@@ -1,5 +1,7 @@
 package com.curso.modelo.entidad;
 
+import java.time.Instant;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,9 @@ public class Coche_Ciclo_De_Vida {
 	private String marca;
 	private String modelo;
 	private String matricula;
+	
+	Instant fechaCreacion;
+	Instant fechaModificacion;
 	
 	@PostLoad
 	public void postLoad() {

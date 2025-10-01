@@ -30,10 +30,16 @@ public class FiltroLog extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
+		System.out.println("ANTES");
+		
+		
 		HttpServletRequest rq = (HttpServletRequest) request;
 		System.out.println("FILTRO LOG: "+rq.getMethod()+" "+rq.getRequestURI());
 		
 		chain.doFilter(request, response);
+		
+		
+		System.out.println("DESPUES");
 	}
 
 	public void destroy() {

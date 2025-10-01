@@ -24,12 +24,13 @@ public class SVPruebas extends HttpServlet {
 	
     public SVPruebas() {
         super();
+        System.out.println("INSTANCIADO SV_PRUEBAS");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Pruebas interceptores 
 		/*
+		//Pruebas interceptores 
 		try {
 			Pelicula p1 = new Pelicula(null, "Die Hard", "John McTiernan", "Accion", "1989");
 			Pelicula p2 = new Pelicula(null, "Depredador", "John McTiernan", "Accion", "1989");
@@ -41,15 +42,13 @@ public class SVPruebas extends HttpServlet {
 		}
 		*/
 		
-		
-		
 		@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 		List<Pelicula> peliculas = new ArrayList() {{
 			add(new Pelicula(null, "T1","D1","G1","2001"));
 			add(new Pelicula(null, "T2","D2","G2","2002"));
-			add(new Pelicula(null, "T3","D3","G3","2003"));
+			add(new Pelicula(null, null,"D3","G3","2003"));
 			add(new Pelicula(null, "T4","D4","G4","2004"));
-			add(new Pelicula(null, "T5","D5","G5","2005"));
+			add(new Pelicula(null, null,"D5","G5","2005"));
 		}};
 		try {
 			gestorPeliculas.insertarPeliculas(peliculas);
@@ -57,7 +56,6 @@ public class SVPruebas extends HttpServlet {
 			System.out.println("=========================================");
 			System.out.println(e.getMessage());
 		}
-		
 		
 		gestorPeliculas.listarTodas().forEach( p -> System.out.println(p));
 		

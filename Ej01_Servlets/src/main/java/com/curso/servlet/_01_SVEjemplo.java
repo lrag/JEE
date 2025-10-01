@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 //El contenedor invoca el constructor por defecto
 //La instancia se registra como servlet
 //El contenedor invoca el método init
+//Cuando llega una petición se invoca el método service
+//Cuando la aplicación se vaya a replegar, el contenedor invoca el método destroy
 public class _01_SVEjemplo implements Servlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -64,7 +66,7 @@ public class _01_SVEjemplo implements Servlet {
 		response.setHeader("content-type", "text/html");
 		PrintWriter out = response.getWriter();
 		out.write("<html><body>");
-		out.write("Petición recibida: "+request.getMethod()+" "+request.getRequestURL()+"<br/>");		
+		out.write("<h1 align='center'><font color='lightBlue'>Petición recibida: "+request.getMethod()+" "+request.getRequestURL()+"</font></h1>");		
 		out.write("</body></html>");
 		
 	}

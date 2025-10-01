@@ -33,7 +33,7 @@ public class FiltroSeguridad extends HttpFilter implements Filter {
 		HttpServletRequest rq = (HttpServletRequest) request;
 		System.out.println("FILTRO SEGURIDAD: COMPROBANDO QUE EL USUARIO ESTÁ AUTENTICADO...");
 		
-		//IF autencitado
+		//IF autenticado
 			chain.doFilter(request, response);
 		//ELSE
 			//enviarlo a la pantalla de login

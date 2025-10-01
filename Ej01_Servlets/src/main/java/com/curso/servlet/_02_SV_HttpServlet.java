@@ -27,6 +27,7 @@ public class _02_SV_HttpServlet extends HttpServlet {
 		}
 		
 		//ESCRIBIR EN EL LOG
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

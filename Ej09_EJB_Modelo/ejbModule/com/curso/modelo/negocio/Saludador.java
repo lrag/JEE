@@ -21,7 +21,7 @@ public class Saludador implements SaludadorLocal {
     	System.out.println("Instanciando Saludador");
     }
 
-    public String saludar(String nombre) {
+    public synchronized String saludar(String nombre) {
     	System.out.println("Saludando a "+nombre);
     	return "Hola "+nombre;
     }

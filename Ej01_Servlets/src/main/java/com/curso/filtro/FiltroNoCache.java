@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
-//No cachearlo todo tiene un precio, y es que el servidor puede recibir m�s
+//No cachearlo todo tiene un precio, y es que el servidor puede recibir más
 //peticiones
 @WebFilter("/*")
 public class FiltroNoCache implements Filter {

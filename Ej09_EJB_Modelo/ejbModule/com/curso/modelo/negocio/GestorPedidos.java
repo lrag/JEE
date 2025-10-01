@@ -14,12 +14,14 @@ import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 @Stateful
-@LocalBean
+//@LocalBean
 //Los EJB de sesión con estado deben ser serializables
-public class GestorPedidos implements GestorPedidosLocal {
+public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto {
 
 	@EJB
 	private ValidadorProductos validador;
+	
+	//private transient Socket sk;
 	
 	private List<String> cesta;
 	
@@ -38,12 +40,14 @@ public class GestorPedidos implements GestorPedidosLocal {
     public void inicializar() {
     	System.out.println("@PostConstruct de GestorPedidos");
     	cesta = new ArrayList<>();
+    	//abrir el socket
     }
     
     @PreDestroy
     public void finalizar() {
     	//Codigo para liberar recursos que no pertenezcan a la JVM
     	System.out.println("@Predestroy de GestorPedidos");
+    	//cerrar el socket
     }
     
     //Ciclo de vida específico para los ejb de sesion con estado
@@ -65,6 +69,10 @@ public class GestorPedidos implements GestorPedidosLocal {
     	System.out.println("Llamadita al remove");
     }
     
+    
+    //                   //
+    // LOGICA DE NEGOCIO // 
+    //                   //
     
     public boolean addProducto(String producto) {
     	if(!validador.validar(producto)) {

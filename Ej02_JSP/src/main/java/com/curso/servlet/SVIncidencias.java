@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.curso.modelo.entidad.Incidencia;
 import com.curso.modelo.negocio.ServicioIncidencias;
 
-@WebServlet("SVIncidencias")
+@WebServlet("/SVIncidencias")
 public class SVIncidencias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private ServicioIncidencias servicioIncidencias = new ServicioIncidencias();	
+	private ServicioIncidencias servicioIncidencias = ServicioIncidencias.getInstancia();	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Incidencia> incidencias = servicioIncidencias.listar();

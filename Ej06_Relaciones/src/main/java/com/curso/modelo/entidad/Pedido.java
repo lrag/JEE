@@ -1,5 +1,6 @@
 package com.curso.modelo.entidad;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.CascadeType;

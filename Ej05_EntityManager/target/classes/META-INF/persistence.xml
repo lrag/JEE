@@ -20,7 +20,7 @@
             <property name="hibernate.highlight_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update" />
 
-        </properties>
+        </properties>        
 
     </persistence-unit>
     

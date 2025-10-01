@@ -58,6 +58,8 @@ public class Pruebas_GenerationType_Table {
 		System.out.println(p4);
 		System.out.println(p5);
 		
+		Thread.sleep(5_000);		
+		
 		em.getTransaction().commit(); 
 		em.close();		
 		

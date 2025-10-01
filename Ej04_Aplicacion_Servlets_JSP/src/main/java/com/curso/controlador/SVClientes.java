@@ -23,6 +23,7 @@ public class SVClientes extends HttpServlet {
     }
     
     //GET usado para lo sigiente
+    //Ver el listado
     //Cancelar (verListado)
     //Nuevo, Vaciar (verFormulario)
     //Seleccionar.
@@ -43,8 +44,7 @@ public class SVClientes extends HttpServlet {
 		//Si lo que tenemos que mostrar es la lista de clientes, habrá que acceder a la base de datos para buscarlos
 		if(siguienteVista.equals("listadoClientes.jsp")){
 			List<Cliente> clientes = servicioClientes.listar(0,20);
-			request.setAttribute("listadoClientes", clientes);
-			
+			request.setAttribute("listadoClientes", clientes);			
 		} else if(siguienteVista.equals("formularioClientes.jsp")){
 			//
 		}		
@@ -92,6 +92,10 @@ public class SVClientes extends HttpServlet {
 				break;			
 		}
 
+		//List<Cliente> clientes = servicioClientes.listar(0,20);
+		//request.setAttribute("listadoClientes", clientes);			
+		//request.getRequestDispatcher("listadoClientes.jsp").forward(request,response);		
+		
 		//Despues de una petición post se hace un redirect.
 		//Si se está usando MVC no se puede hacer un redirect a una vista
 		//Se hace un redirect al controlador que muestre la vista que nos 
