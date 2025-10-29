@@ -44,7 +44,7 @@ public class EmisorTopic {
 			
 			TopicPublisher productor = sesion.createPublisher(topic);
 
-			//Arrancamos la conexán
+			//Arrancamos la conexión
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor

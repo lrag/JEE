@@ -13,7 +13,7 @@ public class FactoriaFormateador {
 	/*
 	@Produces
 	@QFormateador
-	@RequestScoped
+	@RequestScoped //El ámbito ya no se asignará en la clase sino en el método factoría
 	public Formateador getFormateador(){
 		switch(tipo){
 			//Cuidado que aqui 'otraBean' de FormateadorWord queda a null
@@ -22,9 +22,27 @@ public class FactoriaFormateador {
 			case "Excel" : return new FormateadorExcel("DATO"); 
 			default : return null;		
 		}
-	}	
+	}
 	*/
 
+	/*
+	@Produces
+	@QFormateador
+	@RequestScoped
+	public Formateador getFormateador(){
+		//Podemos crear nosotros las dependencias y devolver el objeto con las mismas resueltas (NO)
+		//(y luego, ya si eso, nos cortamos las venas)
+		OtraBean otraBean = new OtraBean();
+		System.out.println("OtraBean:"+otraBean);
+		switch(tipo){
+		case "Word"  : return new FormateadorWord(otraBean);
+		case "PDF"   : return new FormateadorPDF();
+		case "Excel" : return new FormateadorExcel(otraBean, "DATO"); 
+		default : return null;		
+		}		
+	}
+	*/
+	
 	/*
 	@Produces
 	@QFormateador
@@ -39,11 +57,10 @@ public class FactoriaFormateador {
 		}		
 	}
 	*/
-	
-	
+
 	@Produces
 	@QFormateador
-	@RequestScoped
+	//@RequestScoped
 	//Si optamos por esta opcion tambien podríamos declarar en la clase
 	//@Inject private FormateadorPDF formateadorPDF;
 	//@Inject private FormateadorWord formateadorWord;
@@ -55,8 +72,11 @@ public class FactoriaFormateador {
 			case "PDF"   : return formateadorPDF;
 			case "Excel" : return formateadorExcel; //Este no tiene 'dato'
 			default : return null;		
-		}		
+		}	
 	}	
+	
+	
+	
 	
 
 }

@@ -8,7 +8,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,7 +36,7 @@ public class _01_SVEjemplo implements Servlet {
 		System.out.println("=================================================");
 		System.out.println("Instanciando SVEjemplo");
 	}
-
+	
 	@Override
 	public void init(ServletConfig svCfg) throws ServletException {
 		System.out.println("=================================================");
@@ -53,7 +52,7 @@ public class _01_SVEjemplo implements Servlet {
 
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-		
+			
 		//ESCRIBIR EN EL LOG
 		
 		System.out.println("=================================================");

@@ -7,8 +7,9 @@ import javax.ejb.Local;
 @Local
 public interface GestorPedidosLocal {
 
-    public boolean addProducto(String producto);
-    public List<String> listarCesta();
-    public void remove();
+    boolean addProducto(String producto);
+    List<String> listarCesta();
+    void comprar();
+    void remove();
 	
 }

@@ -35,8 +35,10 @@ public class FiltroNoCache implements Filter {
 		rp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
 		rp.setHeader("Pragma", "no-cache"); // HTTP 1.0
 		rp.setDateHeader("Expires", 0); //esta es la mas efectiva de todas
-									    //cuando debe expirar una pagina en milisegundos
-							            //desde el 1 de 1 de 1970
+		//cuando debe expirar una pagina en milisegundos
+		//desde el 1 de 1 de 1970
+		
+		
 
 	}
 

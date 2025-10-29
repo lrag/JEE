@@ -1,7 +1,3 @@
-
-
-
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -28,14 +24,15 @@ public class ReceptorMessageListenerTopic implements MessageListener {
 
 			TopicConnectionFactory topicConnFac = (TopicConnectionFactory) ic.lookup("jms/RemoteConnectionFactory");
 			TopicConnection qcx = topicConnFac.createTopicConnection("user","useruser"); 
-			//1er par�metro: si hay transaccion o no
-			//2� par�metro: Como se realiza el ACK del mensaje
+			//1er parámetro: si hay transaccion o no
+			//2º parámetro: Como se realiza el ACK del mensaje
 			TopicSession sesion = qcx.createTopicSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			
 			Topic topic = (Topic) ic.lookup("jms/topic");
 			TopicSubscriber subscriptor = sesion.createSubscriber(topic);
+			//subscriptor.receive(); Para recibir de manera síncrona
 
-			//Arrancamos la conex�n
+			//Arrancamos la conexión
 			qcx.start(); 
 
 			subscriptor.setMessageListener(this);
@@ -61,6 +58,7 @@ public class ReceptorMessageListenerTopic implements MessageListener {
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("Esperando mensajitos");
 		ReceptorMessageListenerTopic rml = new ReceptorMessageListenerTopic();
 		rml.metodo();
 		

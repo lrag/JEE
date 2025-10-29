@@ -30,13 +30,15 @@ public class SVScopes extends HttpServlet {
 		out.println("<h3>"+beanDependent+"</h3>");
 		out.println("<h3>"+CDI.current().select(BeanDependent.class).get()+"</h3>");
 		out.println("<h3>"+CDI.current().select(BeanDependent.class).get()+"</h3>");
-		out.println("</div>");
+		out.println("<div/>");
 		out.println("<h3>"+beanRequest+"</h3>");
 		out.println("<h3>"+CDI.current().select(BeanRequest.class).get()+"</h3>");
-		out.println("</div>");
+		out.println("<h3>"+CDI.current().select(BeanRequest.class).get()+"</h3>");
+		out.println("<div/>");
 		out.println("<h3>"+beanSession+"</h3>");
 		out.println("<h3>"+CDI.current().select(BeanSession.class).get()+"</h3>");
-		out.println("</div>");
+		out.println("<div/>");
+		
 		out.println("<h3>"+beanApplication+"<h3>");
 		out.println("<h3>"+CDI.current().select(BeanApplication.class).get()+"</h3>");
 	}

@@ -12,14 +12,14 @@ public class AplicacionCliente {
 
 	public static void main(String[] args) throws Exception {
 		
-		/*
 		
-		java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
-		java:app/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
+		/*
+		java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
+		java:app/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
 		java:module/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
-		java:jboss/exported/Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
-		ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful
-		*/
+		java:jboss/exported/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto
+		ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful		
+		 */
 		
 		final Hashtable<String, String> jndiProperties = new Hashtable<>();
 		jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
@@ -28,7 +28,7 @@ public class AplicacionCliente {
 		InitialContext ic = new InitialContext(jndiProperties);		
 		System.out.println(ic);
 		
-		GestorPedidosRemoto gp = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
+		GestorPedidosRemoto gp = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
 		
 		gp.addProducto("EJB P1");
 		gp.addProducto("P2");

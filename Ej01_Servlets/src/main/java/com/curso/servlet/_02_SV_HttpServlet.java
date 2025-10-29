@@ -18,6 +18,8 @@ public class _02_SV_HttpServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//ESCRIBIR EN EL LOG
+		
 		//hora inicio
 		
 		try {

@@ -2,6 +2,7 @@ package com.curso.controlador;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,7 +36,7 @@ public class SVCesta extends HttpServlet {
 			//
 			try {
 				Context ic = new InitialContext();
-				gpl = (GestorPedidosLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosLocal");
+				gpl = (GestorPedidosLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosLocal");
 				sesion.setAttribute("gestorPedidos", gpl);
 			} catch (NamingException e) {
 				e.printStackTrace();

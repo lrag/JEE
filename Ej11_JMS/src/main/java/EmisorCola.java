@@ -40,11 +40,10 @@ public class EmisorCola {
 			QueueSession sesion = qcx.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			//QueueSession sesion = qcx.createQueueSession(false, QueueSession.CLIENT_ACKNOWLEDGE);
 			
-			//Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
 			Queue cola = (Queue) ic.lookup("jms/cola");
 			MessageProducer productor = sesion.createProducer(cola);
 
-			//Arrancamos la conexón
+			//Arrancamos la conexón (aqui solo vamos a enviar mensajes sin trnsacción. no hace falta arrancarla)
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor

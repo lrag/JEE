@@ -8,12 +8,13 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
 
 @Entity
 public class Cliente {
@@ -41,18 +42,16 @@ public class Cliente {
 	
 	//Relacion de uno a muchos
 	//Extremo opcional
-	//@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL , fetch = FetchType.EAGER) //Este cascade no es realmente necesario y el fetch EAGER una cosa peligrosísima
-	@Transient
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL) // , fetch = FetchType.EAGER) //Este cascade no es realmente necesario y el fetch EAGER una cosa peligrosísima
+	//@Transient
 	private List<Pedido> pedidos;
 	
 	//Relacion de muchos a muchos
 	@ManyToMany(mappedBy="clientes", cascade=CascadeType.ALL) //Este cascade es una aberracion
-	private List<Comercial> comerciales;
-	
+	private List<Comercial> comerciales;	
 
 	public Cliente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Cliente(Integer id, String nombre, String telefono,

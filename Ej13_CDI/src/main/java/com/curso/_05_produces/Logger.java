@@ -1,5 +1,7 @@
 package com.curso._05_produces;
 
+import javax.annotation.PostConstruct;
+
 //@ApplicationScoped
 public class Logger {
 
@@ -7,6 +9,11 @@ public class Logger {
 
 	public Logger() {
 		super();
+	}
+	
+	@PostConstruct
+	public void inicializar() {
+		System.out.println("ABRIENDO EL FICHERO PARA ESCRITURA");
 	}
 	
 	//No tiene constructor por defecto:

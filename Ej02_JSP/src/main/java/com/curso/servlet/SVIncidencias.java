@@ -19,10 +19,12 @@ public class SVIncidencias extends HttpServlet {
 	private ServicioIncidencias servicioIncidencias = ServicioIncidencias.getInstancia();	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		List<Incidencia> incidencias = servicioIncidencias.listar();
 		request.setAttribute("incidencias", incidencias);
 		request.getRequestDispatcher("WEB-INF/paginas/listadoIncidencias.jsp").forward(request, response);
 		System.out.println("Este código se ejecuta igualmente, pero hemos perdido ya el control de la petición");
+		
 	}
 	
 }

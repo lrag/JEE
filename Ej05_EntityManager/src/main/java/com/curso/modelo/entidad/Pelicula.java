@@ -23,7 +23,7 @@ public class Pelicula {
 
 	@Id // Obligatoria
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE) //Secuencia
-	//@SequenceGenerator(name = "PELICULAS_SEQ", initialValue = 0, allocationSize = 10)
+	//@SequenceGenerator(name = "PELICULAS_SEQ", initialValue = 10, allocationSize = 10)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Columna autoincremental
 	private Integer id;
 
@@ -33,7 +33,7 @@ public class Pelicula {
 	
 	@Column(name = "fecha_estreno")	
 	//Se puede trabajar con java.util.Date (a la antígua)
-	//@Temporal(TemporalType.DATE) Opcional: si no se incluye se guarda el timestamp
+	//@Temporal(TemporalType.DATE) //Opcional: si no se incluye se guarda el timestamp
 	//private Date fecha;
 	private LocalDate fechaEstreno;
 

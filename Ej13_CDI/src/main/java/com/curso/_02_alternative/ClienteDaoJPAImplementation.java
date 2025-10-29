@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 
 @ApplicationScoped
-@Alternative //Por defecto
+@Alternative //Tiene preferencia lo que se diga en el beans.xml
 public class ClienteDaoJPAImplementation implements ClienteDao{
 
 	@Override

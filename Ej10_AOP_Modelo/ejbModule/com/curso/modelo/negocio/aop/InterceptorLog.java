@@ -11,7 +11,9 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
 //POJO
-//La clase no tiene anotaciones pero será manejada por el contenedor
+//La clase no tiene anotaciones pero será manejada por el contenedor cuando vea el @AroundInvoke
+//Tiene que tener constructor por defecto
+//Será un singleton
 public class InterceptorLog {
 
 	//Un interceptor puede recibir inyecciones...

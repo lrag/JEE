@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 //@LocalBean
 //Pojo
 //Acceso público
+//100% manejado
 //Constructor por defecto
 //No tiene sentido que tenga constructores con parámetros
 public class Saludador implements SaludadorLocal {
@@ -21,8 +22,18 @@ public class Saludador implements SaludadorLocal {
     	System.out.println("Instanciando Saludador");
     }
 
+    private String nombre;
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
+    public String getSaludo() {
+    	return "Bo que pa, que pa, que pacha "+nombre; 
+    }
+    
+    
+    
     public synchronized String saludar(String nombre) {
-    	System.out.println("Saludando a "+nombre);
+    	System.out.println("Saludando a "+nombre+" ("+this+")");
     	return "Hola "+nombre;
     }
         

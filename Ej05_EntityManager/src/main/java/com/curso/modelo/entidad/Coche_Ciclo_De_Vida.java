@@ -36,6 +36,7 @@ public class Coche_Ciclo_De_Vida {
 	@PrePersist
 	public void prePersist() {
 		System.out.println("PREPERSIST");
+		fechaCreacion = Instant.now();
 	}
 
 	@PostPersist
@@ -46,6 +47,7 @@ public class Coche_Ciclo_De_Vida {
 	@PreUpdate
 	public void preUpdate() {
 		System.out.println("PREUPDATE");
+		fechaModificacion = Instant.now();
 	}
 
 	@PostUpdate
@@ -56,6 +58,7 @@ public class Coche_Ciclo_De_Vida {
 	@PreRemove
 	public void preRemove() {
 		System.out.println("PREREMOVE");
+		//servicioHistoricoProductos.guardar(this);
 	}
 
 	@PostRemove
@@ -105,6 +108,12 @@ public class Coche_Ciclo_De_Vida {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+
+	@Override
+	public String toString() {
+		return "Coche_Ciclo_De_Vida [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", matricula=" + matricula
+				+ ", fechaCreacion=" + fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
 	}
 
 }

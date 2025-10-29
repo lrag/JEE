@@ -2,6 +2,8 @@ import static org.hibernate.cfg.JdbcSettings.FORMAT_SQL;
 import static org.hibernate.cfg.JdbcSettings.HIGHLIGHT_SQL;
 import static org.hibernate.cfg.JdbcSettings.SHOW_SQL;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -55,6 +57,13 @@ public class Pruebas_CicloDeVida {
 
 		s.getTransaction().commit();
 		s.close();
+		
+		s = sf.openSession();
+		System.out.println("==========================================");
+		List<Coche_Ciclo_De_Vida> coches = s.createQuery("from Coche_Ciclo_De_Vida c", Coche_Ciclo_De_Vida.class).getResultList();
+		coches.forEach( c -> System.out.println(c));
+		s.close();
+		
 		sf.close();
 		
 		

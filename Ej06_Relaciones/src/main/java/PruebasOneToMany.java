@@ -76,13 +76,11 @@ public class PruebasOneToMany {
 		System.out.println(c2.getDatosBancarios().getBanco());
 
 		//c2.getPedidos().size();
-		
 		em.close();
 		
 		for(Pedido pAux: c2.getPedidos()){
 			System.out.println(pAux.getCodigo());
-		}
-		
+		}		
 		
 		emf.close();
 		

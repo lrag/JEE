@@ -17,6 +17,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 
 public class ReceptorMessageListener implements MessageListener {
@@ -56,13 +57,16 @@ public class ReceptorMessageListener implements MessageListener {
 		TextMessage txtMsg = (TextMessage) msg;
 		try {
 			System.out.println("Mensaje recibido:"+txtMsg.getText());
-		} catch (JMSException e) {
+			System.out.println("Hilo onMessage: "+Thread.currentThread().getName());
+			Thread.sleep(1_000);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("Hilo main: "+Thread.currentThread().getName());
 		ReceptorMessageListener rml = new ReceptorMessageListener();
 		rml.metodo();
 		

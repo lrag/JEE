@@ -20,7 +20,6 @@
 		<url-pattern>/SVEjemplo</url-pattern>
 	</servlet-mapping>
 	
-	
 	<display-name>Ej01_Servlets</display-name>
 	
 	<welcome-file-list>

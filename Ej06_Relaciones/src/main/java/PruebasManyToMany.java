@@ -37,7 +37,7 @@ public class PruebasManyToMany {
 
 		List<Comercial> comerciales2 = new ArrayList<Comercial>();
 		comerciales2.add(co1);
-		comerciales2.add(co1);		
+		comerciales2.add(co2);		
 		c2.setComerciales(comerciales2);
 		
 		List<Comercial> comerciales3 = new ArrayList<Comercial>();

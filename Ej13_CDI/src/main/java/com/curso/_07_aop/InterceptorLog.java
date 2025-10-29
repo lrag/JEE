@@ -15,7 +15,12 @@ public class InterceptorLog {
 	@AroundInvoke
 	public Object log(InvocationContext iCtx) throws Exception{
 		
+		iCtx.getMethod();     //A qúe método se está llamando
+		iCtx.getParameters(); //Con que parámetros se está invocando
+		iCtx.getTarget();     //El objeto de nuestra clase		
+		
 		System.out.println("Llamada al metodo "+iCtx.getMethod().getName()+" de "+iCtx.getTarget());
+		
 		Object obj = iCtx.proceed();
 		
 		return obj;		

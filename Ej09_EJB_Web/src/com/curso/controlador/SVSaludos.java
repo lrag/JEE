@@ -33,24 +33,31 @@ public class SVSaludos extends HttpServlet {
 	private SaludadorLocal saludador;
 	
     public SVSaludos() {
-        super();
-        
-		/*
-		try {
+        super(); 
+        //saludador.saludar("X");  NULL POINTER EXCEPTION!
+    }
+		
+    @Override
+	public void init() throws ServletException {
+		/*Esto tb hubiera funcionado en el constructor
+    	try {
 			System.out.println(">>CONECTANDO CON EL DIRECTORIO JNDI>>>>>>>>>>>>>>>>>>>>>>>>");
 			Context ic = new InitialContext();
-			saludador = (SaludadorLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/Saludador!com.curso.modelo.negocio.SaludadorLocal");
+			saludador = (SaludadorLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/Saludador!com.curso.modelo.negocio.SaludadorLocal");
+			           
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} 
 		*/
-        
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		String saludo = saludador.saludar("Luis Ramón");			
 		response.getWriter().append("<marquee><h2><font color='lightGreen'>"+saludo+"</font></h2></marquee>");
+		
+		saludador.setNombre("Bart J Simpson");
+		response.getWriter().append("<marquee><h2><font color='lightBlue'>"+saludador.getSaludo()+"</font></h2></marquee>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -29,7 +29,7 @@ public class ReceptorColaPrioridad {
 			QueueSession sesion = qcx.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			
 			Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
-			MessageConsumer receptor = sesion.createConsumer(cola, " JMSPriority>5 and cantidad>250 ");
+			MessageConsumer receptor = sesion.createConsumer(cola, " JMSPriority>=4 and cantidad>150 ");
 
 			//Arrancamos la conexión
 			qcx.start(); 

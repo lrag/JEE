@@ -28,14 +28,14 @@ public class EmisorColaPrioridad {
 			
 			Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
 			MessageProducer productor = sesion.createProducer(cola);
-			productor.setPriority(4);
+			productor.setPriority(6);
 			
 			//Arrancamos la conexián
 			qcx.start();
 			
 			//Para enviar los mensajes necesitamos la sesion y el productor
 			TextMessage txtMsg = sesion.createTextMessage("EL QUE SABE SABA");
-			txtMsg.setIntProperty("cantidad", 400);
+			txtMsg.setIntProperty("cantidad", 500);
 			
 			productor.send(txtMsg);			
 			

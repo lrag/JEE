@@ -14,7 +14,7 @@ public class InterceptorCronometro {
 		Object retorno = iCtx.proceed();
 		
 		long fin = System.currentTimeMillis();
-		System.out.println("Llamada al método "+iCtx.getMethod().getName()+" procesada en "+(fin-inicio)+" milisegundos.");
+		System.out.println("INTERCEPTOR CRONOMETRO: Llamada al método "+iCtx.getMethod().getName()+" procesada en "+(fin-inicio)+" milisegundos.");
 		
 		return retorno;	
 		

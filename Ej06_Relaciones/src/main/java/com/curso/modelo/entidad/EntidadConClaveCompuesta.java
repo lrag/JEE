@@ -12,7 +12,7 @@ Ringo    Starr       10      100
 */
 
 @Entity
-public class ClaseConClaveCompuesta {
+public class EntidadConClaveCompuesta {
 
 	@EmbeddedId
 	private Clave clave;
@@ -20,11 +20,11 @@ public class ClaseConClaveCompuesta {
 	private String dato1;
 	private String dato2;
 
-	public ClaseConClaveCompuesta() {
+	public EntidadConClaveCompuesta() {
 		super();
 	}
 
-	public ClaseConClaveCompuesta(Clave clave, String dato1, String dato2) {
+	public EntidadConClaveCompuesta(Clave clave, String dato1, String dato2) {
 		super();
 		this.clave = clave;
 		this.dato1 = dato1;

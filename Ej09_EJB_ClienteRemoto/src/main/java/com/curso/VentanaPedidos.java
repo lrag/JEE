@@ -20,7 +20,7 @@ import com.curso.modelo.negocio.GestorPedidosRemoto;
 
 public class VentanaPedidos extends JFrame {
 
-	private GestorPedidosRemoto gc;
+	private GestorPedidosRemoto gestorPedidos;
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
@@ -80,7 +80,7 @@ public class VentanaPedidos extends JFrame {
 	}	
 	
 	protected void desconectar() {		
-		gc.remove();
+		gestorPedidos.remove();
 	}
 
 	private JTextField getJTFProducto() {
@@ -118,7 +118,7 @@ public class VentanaPedidos extends JFrame {
 		Context ic = null;
 		try {
 			ic = new InitialContext(jndiProperties);
-			gc = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/com.curso-Ej09_EJB_Modelo-0.0.1-SNAPSHOT/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
+			gestorPedidos = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
@@ -135,7 +135,7 @@ public class VentanaPedidos extends JFrame {
 		
 		String producto = jTFProducto.getText();		
 		
-		if(gc.addProducto(producto)){
+		if(gestorPedidos.addProducto(producto)){
 			jTFProducto.setText("");
 			rellenarLista();
 		} else {
@@ -144,7 +144,7 @@ public class VentanaPedidos extends JFrame {
 	}
 	
 	private void rellenarLista(){	
-		List<String> productos = gc.listarCesta();
+		List<String> productos = gestorPedidos.listarCesta();
 		jLCesta.setListData(productos.toArray());
 		
 	}

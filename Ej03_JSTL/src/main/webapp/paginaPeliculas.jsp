@@ -45,7 +45,7 @@
 
 
 </body>
-	</html>
+</html>
 
 </fmt:bundle>
 

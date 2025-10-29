@@ -26,18 +26,42 @@ public class ReceptorCola {
 			QueueSession sesion = qcx.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 			//QueueSession sesion = qcx.createQueueSession(false, QueueSession.CLIENT_ACKNOWLEDGE);
 			
-			Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
+			//Queue cola = (Queue) ic.lookup("jms/queue/pruebas");
+			Queue cola = (Queue) ic.lookup("jms/cola");
 			MessageConsumer receptor = sesion.createConsumer(cola);
 
 			//Arrancamos la conexión
 			qcx.start(); 
 			
 			//Para recibir los mensajes:
-			TextMessage txtMsg = (TextMessage) receptor.receive(); //Sincrono
+			System.out.println("Esperando un mensaje...");
+			//TextMessage txtMsg = (TextMessage) receptor.receiveNoWait(); //Si no hay mensaje ahora mismo devuelve nulo
+			//TextMessage txtMsg = (TextMessage) receptor.receive(10_000); //Sincrono, pero solo esperará 10 segundos. Si no llega un mensaje devuelve nulo
+			TextMessage txtMsg = (TextMessage) receptor.receive(); //Sincrono. 
 			System.out.println("Mensaje recibido:"+txtMsg.getText());
 			
-			//txtMsg.acknowledge();
 			
+			/*
+			//Aquí estaríamos procesando los mensajes de uno en uno porque utilizamos un hilo para todo el proceso
+			ProcesadorMensaje pm = new ProcesadorMensaje();
+			while(true) {
+				txtMsg = (TextMessage) receptor.receive(); //Sincrono.
+				pm.procesarMensaje(txtMsg.getText());
+			}
+			*/
+
+			/*
+			ProcesadorMensaje pm = new ProcesadorMensaje();
+			while(true) {
+				if (hay hilo en el pool) {
+					txtMsg = (TextMessage) receptor.receive(); //Sincrono.
+					//Obtener un hilo del pool para ejecutar la llamada
+					pm.procesarMensaje(txtMsg.getText());
+				}
+			}
+			*/
+			
+			//txtMsg.acknowledge();
 			sesion.close();
 			qcx.close();
 						
@@ -54,3 +78,12 @@ public class ReceptorCola {
 		}
 	}
 }
+
+class ProcesadorMensaje {
+	public void procesarMensaje(String texto) {
+	}
+}
+
+
+
+

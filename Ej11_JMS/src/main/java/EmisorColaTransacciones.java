@@ -38,7 +38,7 @@ public class EmisorColaTransacciones {
 			TextMessage txtMsg2 = sesion.createTextMessage("MENSAJE 2");
 			productor.send(txtMsg2);
 			
-			//Hacemos commit o rollback seg�n nos convenga
+			//Hacemos commit o rollback según nos convenga
 			//sesion.commit();
 			sesion.rollback();
 			

@@ -7,8 +7,9 @@ import javax.ejb.Remote;
 @Remote
 public interface GestorPedidosRemoto {
 
-    public boolean addProducto(String producto);
-    public List<String> listarCesta();
-    public void remove();
+    boolean addProducto(String producto);
+    List<String> listarCesta();
+    void comprar();
+    void remove();
 	
 }

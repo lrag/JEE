@@ -1,7 +1,6 @@
 package com.curso._03_named;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
 @ApplicationScoped

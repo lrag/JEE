@@ -29,12 +29,12 @@ public class SVIncidencias_SIN_JSP extends HttpServlet {
 		
 		out.println("<html>");
 		out.println("<body>");
-		out.println("</body>");
 		out.println("<h1 align='center'><font color='lightGreen'>Listado de incidencias</font></h1>");
 		out.println("<table align=center border=1>");
 		out.println("<tr>");
 		out.println("<th>Descipción</th>");
 		out.println("<th>Estado</th>");
+		out.println("</tr>");
 		for(Incidencia i: incidencias){
 			out.println("<tr>");
 			out.println("<td>"+i.getDescripcion()+"</td>");

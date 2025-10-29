@@ -23,6 +23,7 @@ public class Pruebas_EntityManager {
 		//El entity manager tiene dentro una conexión asi que NO ES THREAD-SAFE
 		EntityManager em = null;
 		
+		
 		//////////
 		//INSERT//
 		//////////
@@ -31,9 +32,11 @@ public class Pruebas_EntityManager {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(p1); 
+		
 		System.out.println(p1);
 		em.getTransaction().commit(); //.rollback();
 		em.close();
+		
 		
 		///////////////////////////////
 		//UPDATE CON TODOS LOS CAMPOS//
@@ -58,6 +61,7 @@ public class Pruebas_EntityManager {
 		
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
+
 		
 		/////////////////
 		//SELECT POR ID//
@@ -67,6 +71,7 @@ public class Pruebas_EntityManager {
 		Pelicula p3 = em.find(Pelicula.class, p2.getId());
 		System.out.println(p3);
 		em.close();
+		
 		
 		//////////////////////////////////////////////
 		//UPDATE CUANDO NO TENEMOS TODOS LOS VALORES//
@@ -87,20 +92,22 @@ public class Pruebas_EntityManager {
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
 		
+
 		/////////////////////////
 		//CACHÉ DE PRIMER NIVEL//
 		/////////////////////////
 		System.out.println("=========================================");
 		em = emf.createEntityManager(); //La caché de este em está vacía
 		
-		Pelicula p5a = em.find(Pelicula.class, p4.getId()); //Hace el select y guarda el objeto en la caché
-		Pelicula p5b = em.find(Pelicula.class, p4.getId()); //Ya no hay select y nos entregan la instancia de pelicula que está en la caché
-		Pelicula p5c = em.find(Pelicula.class, p4.getId()); //Ídem
+		Pelicula p5a = em.find(Pelicula.class, p4.getId()); 
+		Pelicula p5b = em.find(Pelicula.class, p4.getId()); 
+		Pelicula p5c = em.find(Pelicula.class, p4.getId()); 
 
 		p5a.setTitulo("Airplane!");		
 		System.out.println(p5c);	
 		
 		em.close();
+
 		
 		//////////
 		//DELETE//
@@ -114,18 +121,20 @@ public class Pruebas_EntityManager {
 		em.getTransaction().begin();
 		
 		//Haciendo un merge antes
-		//p6 = em.merge(p6); //nótese la asignación
+		p6 = em.merge(p6); //nótese la asignación
 		
 		//Tambien podemos hacerlo con un find antes del remove
-		Pelicula p6bis = em.find(Pelicula.class, idPelicula);
+		//Pelicula p6bis = em.find(Pelicula.class, idPelicula);
 		///(Habría que preguntar si existe) 
 		
 		
 		System.out.println("llamada a remove");
-		//em.remove(p6bis); //El delete solo se ejecuta en el momento del commit
+		//em.remove(p6); //bis); //El delete solo se ejecuta en el momento del commit
+		//Thread.sleep(5___0___0___0);
 		
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
+		
 		
 		///////////
 		//REFRESH//
@@ -141,7 +150,7 @@ public class Pruebas_EntityManager {
 		Pelicula p7 = em.find(Pelicula.class, idPelicula);
 		//Cambiamos la duración. Se marca el objeto en la caché como 'no sincronizado'
 		p7.setDuracion(duracion);
-		//em.merge(p7); //Esto no hace el update. El update se ejecuta durante el commit
+		em.merge(p7); //Esto no hace el update. El update se ejecuta durante el commit
 		
 		//Al hacer refresh se sincroniza el objeto con lo que sigue estando en la tabla
 		//Asi que pierde la marca
@@ -149,8 +158,7 @@ public class Pruebas_EntityManager {
 
 		//Ahora no hay update, porque hemos hecho 'refresh'
 		em.getTransaction().commit(); //.rollback();
-		em.close();		
-
+		em.close();	
 		
 		/////////////////
 		//OTROS MÉTODOS//
@@ -182,7 +190,7 @@ public class Pruebas_EntityManager {
 		
 		//select p.* from peliculas as p
 		//select p from Pelicula as p
-		Query q = em.createQuery("select p from Pelicula p"); //El 'as' es opcional y no lo pone nadie
+		Query q = em.createQuery("select p from Pelicula as p"); //El 'as' es opcional y no lo pone nadie
 		List<Pelicula> peliculas = q.getResultList();
 		for(Pelicula pAux: peliculas) {
 			System.out.println(pAux);

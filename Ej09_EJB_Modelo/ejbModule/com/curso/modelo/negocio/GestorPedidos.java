@@ -1,8 +1,10 @@
 package com.curso.modelo.negocio;
 
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -16,13 +18,19 @@ import javax.ejb.Stateful;
 @Stateful
 //@LocalBean
 //Los EJB de sesión con estado deben ser serializables
-public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto {
+public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private ValidadorProductos validador;
 	
 	//private transient Socket sk;
 	
+	//Este es el estado:
 	private List<String> cesta;
 	
     public GestorPedidos() {
@@ -50,7 +58,9 @@ public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto {
     	//cerrar el socket
     }
     
+    //
     //Ciclo de vida específico para los ejb de sesion con estado
+    //
     private transient Socket sk; //En el post construct se inicializar�a este socket
     
     @PrePassivate
@@ -75,6 +85,7 @@ public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto {
     //                   //
     
     public boolean addProducto(String producto) {
+    	//LN    	
     	if(!validador.validar(producto)) {
     		System.out.println("Producto rechazado "+producto);
     		return false;
@@ -86,6 +97,10 @@ public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto {
 
     public List<String> listarCesta(){
     	return cesta;
+    }
+    
+    public void comprar() {
+    	System.out.println("Comprando la cesta: "+cesta.stream().collect(Collectors.joining(", ")));
     }
     
 }

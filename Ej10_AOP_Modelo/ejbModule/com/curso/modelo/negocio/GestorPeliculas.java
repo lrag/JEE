@@ -5,10 +5,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
+import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
+import javax.interceptor.InvocationContext;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -27,10 +29,12 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	private SessionContext sCtx;
 	
 	private GestorPeliculasLocal ejbObj;
-	
-		
+			
 	@EJB
 	private PeliculaDao peliculaDao;
+	
+	@EJB
+	private GestorPeliculasLocal gestorPeliculas_EJBObj;
 	
 	public GestorPeliculas() {
 		System.out.println("INSTANCIANDO GESTOR_PELICULAS");
@@ -45,7 +49,7 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	
 	@Override
 	//@Interceptors({ InterceptorLog.class, InterceptorCronometro.class })
-	//@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
+	//@Transactional(value=TxType.REQUIRED, rollbackOn={ PeliculaException.class } )
 	@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
 	public void insertar(Pelicula pelicula) throws PeliculaException {
 		
@@ -77,26 +81,35 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
 		
+		//OTRAS CONSULTAS
+		
 		for(Pelicula pAux: peliculas) {
 			
 			//Si invocamos el metodo 'insertar' sin pasar por el ejb object
 			//cualquier anotación que tenga se ignorará
+			//
 			//this.insertar(pAux);
+			//			
 			
-			//Obtenemos el ejbObj del session context
-			System.out.println("=========================================");
-			System.out.println(sCtx.getBusinessObject(GestorPeliculasLocal.class));
+			//Podemos obtener la referencia al EJBObj con un lookup al directorio JNDI (así era hasta la versión 2.1
+			//Context ic = new InitialContext();
+			//GestorPeliculasLocal gpl = (GestorPeliculasLocal) ic.lookUp("....chorizo del jsoss");
+			//gpl.insertar(pAux)
 			
-			//Podríamos (deberíamos) declarar el EJBObject como un atributo de la clase)
-			GestorPeliculasLocal ejbObj = sCtx.getBusinessObject(GestorPeliculasLocal.class);
+			//Podemos obtener el ejbObj del session context
+			//Si quisieramos esto el mejor lugar para colocar el código sería el @PostConstruct
+			//System.out.println("=========================================");
+			//System.out.println(sCtx.getBusinessObject(GestorPeliculasLocal.class));
+			//GestorPeliculasLocal gpl = sCtx.getBusinessObject(GestorPeliculasLocal.class);
+			//gpl.insertar(pAux);
+			
+			//Y podemos (la mejor opción) obtener la referencia al EJBObje con @EJB
 			try {
-				ejbObj.insertar(pAux);
+				gestorPeliculas_EJBObj.insertar(pAux);
 			} catch (PeliculaException e) {
 				System.out.println("Una película no se ha insertado");
 			}
-			
-			//insertar(pAux);
-			
+
 			//Mejor controlamos la detencion del proceso con excepciones
 			//if(sCtx.getRollbackOnly()) {
 			//	break;
@@ -138,12 +151,27 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 
 }
 
-
+/*
+@Transactional
+class ServicioPeliculas {
+	
+	public void insertar() {}
+	public void modificar() {}
+	public void otraCosa() {}
+	public void borrar() {}
+	
+	@Transactional(value = TxType.SUPPORTS)
+	public void buscar() {}
+	@Transactional(value = TxType.SUPPORTS)
+	public void listar() {}
+		
+}
+*/
 
 /*
-public class InterceptorTransacciones {
+class InterceptorTransacciones {
 
-	@PresistenceContext
+	@PresistenceContex
 	private EntityManager em;
 
 	@AroundInvoke
@@ -172,14 +200,5 @@ public class InterceptorTransacciones {
 	
 	return retorno	
 }
-
-
-
-
-
-
 */
-
-
-
 
