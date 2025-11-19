@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.curso.modelo.negocio.GestorPedidosRemoto;
+import com.curso.modelo.negocio.ServicioPedidosRemoto;
 
 public class VentanaPedidos extends JFrame {
 
-	private GestorPedidosRemoto gestorPedidos;
+	private ServicioPedidosRemoto gestorPedidos;
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
@@ -118,7 +118,7 @@ public class VentanaPedidos extends JFrame {
 		Context ic = null;
 		try {
 			ic = new InitialContext(jndiProperties);
-			gestorPedidos = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
+			gestorPedidos = (ServicioPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/ServicioPedidos!com.curso.modelo.negocio.ServicioPedidosRemoto?stateful");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {

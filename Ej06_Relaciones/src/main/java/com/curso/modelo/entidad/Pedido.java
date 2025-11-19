@@ -1,8 +1,9 @@
 package com.curso.modelo.entidad;
 
-import java.time.LocalDate;
 import java.util.Date;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +19,9 @@ public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Access(AccessType.PROPERTY)
 	private Integer id;
+	//@Access(AccessType.PROPERTY)
 	private String codigo;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;

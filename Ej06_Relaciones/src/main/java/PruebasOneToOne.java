@@ -11,8 +11,7 @@ public class PruebasOneToOne {
 
 	public static void main(String[] args) {
 		
-		EntityManagerFactory emf = 
-				Persistence.createEntityManagerFactory("H2PU");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("H2PU");
 			
 		EntityManager em = null;
 		
@@ -27,18 +26,19 @@ public class PruebasOneToOne {
 		em.getTransaction().begin();
 		
 		//Podemos guardarlos individualmente y en orden
-		c.setDatosBancarios(null);
-		em.persist(c);  //Aqui el cliente no tiene ID 
-		em.persist(db); //Aqui si
-		c.setDatosBancarios(db);
+		//c.setDatosBancarios(null);
+		//em.persist(c);  //Aqui el cliente no tiene ID 
+		//em.persist(db); //Aqui si
+		//c.setDatosBancarios(db);
 		//Como hemos definido la relación en las dos clases podriamos, insertando
 		//solo un objeto, insertar los dos con un cascade
 		
-		//em.persist(c); //-> se insertan los DB por el cascade que hay en Cliente
-		//em.persist(db); //-> se inserta el cliente por el cascade de DatosBancarios
+		em.persist(c); //-> se insertan los DB por el cascade que hay en Cliente
+		em.persist(db); //-> se inserta el cliente por el cascade de DatosBancarios
 		
 		em.getTransaction().commit(); 
 		em.close();		
+		
 		
 		///////////
 		//CASCADE//
@@ -64,6 +64,9 @@ public class PruebasOneToOne {
 		
 		emf.close();
 	}
-	
-	
+
 }
+
+
+
+

@@ -42,5 +42,6 @@ public class ReceptorPedidos implements MessageListener {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

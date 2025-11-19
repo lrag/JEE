@@ -1,6 +1,7 @@
 package com.curso;
 
 import javax.enterprise.inject.spi.CDI;
+import javax.inject.Inject;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
@@ -10,9 +11,20 @@ import com.curso.modelo.negocio.ServicioPeliculas;
 
 public class Aplicacion {
 
+	@Inject
+	private ServicioPeliculas sp; 
+	
+	
 	public static void main(String[] args) {
+		Aplicacion app = new Aplicacion();
+		app.movidas();
+	}
+		
+	public void movidas() {
 	    Weld weld = new Weld();
 	    WeldContainer container = weld.initialize();
+	    
+	    System.out.println(sp); //Siempre será nulo
 	    
 	    ServicioPeliculas sp1 = container.select(ServicioPeliculas.class).get();
 	    ServicioPeliculas sp2 = container.select(ServicioPeliculas.class).get();
@@ -22,7 +34,7 @@ public class Aplicacion {
 	    System.out.println(sp1);
 	    System.out.println(sp2);
 	    System.out.println(sp3);
-	    
+
 	    sp1.altaPelicula(new Pelicula("Tio motosierra"));
 	    sp2.altaPelicula(new Pelicula("Alien"));
 	    sp3.altaPelicula(new Pelicula("Harry el sucio"));

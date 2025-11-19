@@ -18,7 +18,7 @@ import javax.ejb.Stateful;
 @Stateful
 //@LocalBean
 //Los EJB de sesión con estado deben ser serializables
-public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto, Serializable {
+public class ServicioPedidos implements ServicioPedidosLocal, ServicioPedidosRemoto, Serializable {
 	
 	/**
 	 * 
@@ -30,10 +30,12 @@ public class GestorPedidos implements GestorPedidosLocal, GestorPedidosRemoto, S
 	
 	//private transient Socket sk;
 	
-	//Este es el estado:
+	//				    //
+	//Este es el estado://
+	//					//
 	private List<String> cesta;
 	
-    public GestorPedidos() {
+    public ServicioPedidos() {
     	//Esto dará SIEMPRE null pointer exception
     	//validador.validar("XXX");
     }

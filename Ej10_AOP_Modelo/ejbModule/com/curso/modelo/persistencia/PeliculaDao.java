@@ -2,6 +2,8 @@ package com.curso.modelo.persistencia;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -29,6 +31,43 @@ public class PeliculaDao {
     }
     
 }
+
+/*
+@Local
+interface PeliculaDao_ {
+	void insertar(Pelicula pelicula);
+}
+
+@Singleton
+class PeliculaDaoJPA implements PeliculaDao_ {
+	public void insertar(Pelicula pelicula) {
+		//em.persist(pelicula);
+	}
+}
+
+@Singleton
+class PeliculaDaoMongoDB implements PeliculaDao_ {
+	public void insertar(Pelicula pelicula) {
+		//movidas de MongoDB
+	}
+}
+
+class ServicioPeliculas {	
+	@EJB
+	private PeliculaDao_ peliculaDao;	
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 

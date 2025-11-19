@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.curso.modelo.negocio.GestorPedidosLocal;
+import com.curso.modelo.negocio.ServicioPedidosLocal;
 import com.curso.modelo.negocio.SaludadorLocal;
 
 @WebServlet("/SVSaludos")
@@ -25,6 +25,7 @@ public class SVSaludos extends HttpServlet {
 	//Una backing bean de JSF
 	//Un @WebService de JAX-WS
 	//Un endpoint de JAX-RS
+	//En una bean CDI
 	//
 	//Resumen:
 	//En cualquier otra clase manejada por el servidor JEE
@@ -39,7 +40,8 @@ public class SVSaludos extends HttpServlet {
 		
     @Override
 	public void init() throws ServletException {
-		/*Esto tb hubiera funcionado en el constructor
+		//Esto tb hubiera funcionado en el constructor
+    	/*
     	try {
 			System.out.println(">>CONECTANDO CON EL DIRECTORIO JNDI>>>>>>>>>>>>>>>>>>>>>>>>");
 			Context ic = new InitialContext();
@@ -48,12 +50,18 @@ public class SVSaludos extends HttpServlet {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} 
-		*/
+		*/    	
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String nombre = request.getParameter("nombre");
+		if(nombre == null) {
+			nombre = "Luis Ramón";
+		}
+		
 		response.setContentType("text/html");
-		String saludo = saludador.saludar("Luis Ramón");			
+		String saludo = saludador.saludar(nombre);			
 		response.getWriter().append("<marquee><h2><font color='lightGreen'>"+saludo+"</font></h2></marquee>");
 		
 		saludador.setNombre("Bart J Simpson");

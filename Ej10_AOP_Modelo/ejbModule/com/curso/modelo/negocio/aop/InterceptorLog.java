@@ -43,6 +43,7 @@ public class InterceptorLog {
 		bw.close();
 	}
 		
+	//Solo puede haber un método con around invoke dentro de un interceptor
 	@AroundInvoke
 	public Object log(InvocationContext iCtx) throws Exception {
 		

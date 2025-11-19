@@ -31,7 +31,7 @@ public class SVAlternative extends HttpServlet {
 		
 		response.addHeader("content-type", "text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<h2>"+clienteDao+"</h2>");
+		out.println("<marquee><h2>"+clienteDao+"</h2></marquee>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

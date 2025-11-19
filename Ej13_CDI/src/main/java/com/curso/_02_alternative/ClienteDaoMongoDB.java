@@ -5,11 +5,11 @@ import javax.enterprise.inject.Alternative;
 
 @ApplicationScoped
 @Alternative
-public class ClienteDaoHibernateImplementation implements ClienteDao{
+public class ClienteDaoMongoDB implements ClienteDao{
 
 	@Override
 	public void insertar(String cliente) {
-		System.out.println("s.save(cliente)");		
+		System.out.println("s.saveEnElMongo(cliente)");		
 	}
 
 }

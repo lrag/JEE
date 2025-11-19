@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 @Remote
-public interface GestorPedidosRemoto {
+public interface ServicioPedidosRemoto {
 
     boolean addProducto(String producto);
     List<String> listarCesta();

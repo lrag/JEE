@@ -30,19 +30,19 @@ public class Pruebas_EntityManager {
 		System.out.println("=========================================");
 		Pelicula p1 = new Pelicula(null, "Conan", "Acción", 500, LocalDate.now());
 		em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(p1); 
-		
+		em.getTransaction().begin();		
+		em.persist(p1);
 		System.out.println(p1);
 		em.getTransaction().commit(); //.rollback();
 		em.close();
-		
+
 		
 		///////////////////////////////
 		//UPDATE CON TODOS LOS CAMPOS//
 		///////////////////////////////		
 		System.out.println("=========================================");		
-		/*Si usamos esta pelicula para el merge perderemos titulo, genero y fechaEstreno
+		/*
+		Si usamos esta pelicula para el merge perderemos titulo, genero y fechaEstreno
 		Integer idPelicula = p1.getId();
 		int duracion = 131;
 		Pelicula p2 = new Pelicula();
@@ -71,7 +71,7 @@ public class Pruebas_EntityManager {
 		Pelicula p3 = em.find(Pelicula.class, p2.getId());
 		System.out.println(p3);
 		em.close();
-		
+
 		
 		//////////////////////////////////////////////
 		//UPDATE CUANDO NO TENEMOS TODOS LOS VALORES//
@@ -91,8 +91,8 @@ public class Pruebas_EntityManager {
 		
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
-		
 
+		
 		/////////////////////////
 		//CACHÉ DE PRIMER NIVEL//
 		/////////////////////////
@@ -108,7 +108,6 @@ public class Pruebas_EntityManager {
 		
 		em.close();
 
-		
 		//////////
 		//DELETE//
 		//////////
@@ -121,20 +120,19 @@ public class Pruebas_EntityManager {
 		em.getTransaction().begin();
 		
 		//Haciendo un merge antes
-		p6 = em.merge(p6); //nótese la asignación
+		//p6 = em.merge(p6); //nótese la asignación
 		
 		//Tambien podemos hacerlo con un find antes del remove
-		//Pelicula p6bis = em.find(Pelicula.class, idPelicula);
+		Pelicula p6bis = em.find(Pelicula.class, idPelicula);
 		///(Habría que preguntar si existe) 
 		
-		
 		System.out.println("llamada a remove");
-		//em.remove(p6); //bis); //El delete solo se ejecuta en el momento del commit
+		//em.remove(p6bis); //El delete solo se ejecuta en el momento del commit
 		//Thread.sleep(5___0___0___0);
 		
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
-		
+
 		
 		///////////
 		//REFRESH//
@@ -160,6 +158,10 @@ public class Pruebas_EntityManager {
 		em.getTransaction().commit(); //.rollback();
 		em.close();	
 		
+		
+		System.exit(0);
+		
+		
 		/////////////////
 		//OTROS MÉTODOS//
 		/////////////////
@@ -178,7 +180,7 @@ public class Pruebas_EntityManager {
 		//
 		//FLUSH: Sincroniza la base de datos con los cambios que tengan los objetos de la caché
 		//Luego se podrá seguir haciendo rollback
-		//Utilizado normalmente antes de un CLEAR
+		//Utilizado normalmente antes de un CLEAR o un DETACH
 		//
 		//em.flush();
 			

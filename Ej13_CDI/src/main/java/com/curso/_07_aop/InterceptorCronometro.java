@@ -9,7 +9,7 @@ import javax.interceptor.InvocationContext;
 public class InterceptorCronometro {
 
 	@AroundInvoke
-	public Object log(InvocationContext iCtx) throws Exception{
+	public Object cronometro(InvocationContext iCtx) throws Exception{
 		
 		long inicio = System.currentTimeMillis();
 		Object obj = iCtx.proceed();

@@ -16,12 +16,12 @@ import javax.ejb.Stateless;
 
 @Stateless
 @LocalBean
-public class GestorPedidos_Sin_Estado {
+public class ServicioPedidos_Sin_Estado {
 
 	@EJB
 	private ValidadorProductos validador;
 	
-    public GestorPedidos_Sin_Estado() {
+    public ServicioPedidos_Sin_Estado() {
     }
     
     public boolean validar(String producto) {

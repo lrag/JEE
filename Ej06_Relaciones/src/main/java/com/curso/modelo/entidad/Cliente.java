@@ -37,12 +37,12 @@ public class Cliente {
 	
 	//Relación de uno a uno con dos tablas
 	//Extremo opcional
-	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL /*, fetch = FetchType.LAZY*/)
+	@OneToOne(orphanRemoval = true,  mappedBy = "cliente", cascade = CascadeType.ALL /*, fetch = FetchType.LAZY*/)
 	private DatosBancarios datosBancarios;
 	
 	//Relacion de uno a muchos
 	//Extremo opcional
-	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL) // , fetch = FetchType.EAGER) //Este cascade no es realmente necesario y el fetch EAGER una cosa peligrosísima
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL) //, fetch = FetchType.EAGER) //Este cascade no es realmente necesario y el fetch EAGER una cosa peligrosísima
 	//@Transient
 	private List<Pedido> pedidos;
 	

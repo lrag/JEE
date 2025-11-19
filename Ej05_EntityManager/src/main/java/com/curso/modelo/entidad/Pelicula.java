@@ -36,7 +36,7 @@ public class Pelicula {
 	//@Temporal(TemporalType.DATE) //Opcional: si no se incluye se guarda el timestamp
 	//private Date fecha;
 	private LocalDate fechaEstreno;
-
+	
 	@Transient
 	private String DatoQueNoQueremosQueSePersista;
 	private transient String DatoQueNoQueremosQueSePersistaNiQueSeSerialize;

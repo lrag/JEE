@@ -1,6 +1,7 @@
 package com.curso.modelo.repositorio;
 
 import javax.enterprise.context.ApplicationScoped;
+
 import com.curso.modelo.entidad.Pelicula;
 
 //@Dependent (o no poner nada)

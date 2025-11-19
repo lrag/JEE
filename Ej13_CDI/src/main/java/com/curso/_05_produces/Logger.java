@@ -20,6 +20,7 @@ public class Logger {
 	//CDI no puede instanciar la bean por su cuenta!
 	public Logger(String fichero) {
 		super();
+		System.out.println("CONSTRUCTOR DE LOGGER CON PARÁMETROS");
 		this.fichero = fichero;
 	}
 	

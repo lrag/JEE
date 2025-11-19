@@ -2,10 +2,10 @@ package com.curso.modelo.negocio;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
-@Local
-public interface GestorPedidosLocal {
+@Remote
+public interface ServicioPedidosRemoto {
 
     boolean addProducto(String producto);
     List<String> listarCesta();

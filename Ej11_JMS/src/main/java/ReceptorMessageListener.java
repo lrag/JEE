@@ -1,7 +1,3 @@
-
-
-
-
 import java.util.Properties;
 
 import javax.jms.JMSException;
@@ -21,8 +17,8 @@ import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 
 public class ReceptorMessageListener implements MessageListener {
-
-	public void metodo(){
+	
+	public void conectar(){
 		
 		Context ic = null;
 		try {
@@ -38,10 +34,11 @@ public class ReceptorMessageListener implements MessageListener {
 			Queue cola = (Queue) ic.lookup("jms/cola");
 			MessageConsumer receptor = sesion.createConsumer(cola);
 
+			receptor.setMessageListener(this);
+			
 			//Arrancamos la conexón
 			qcx.start(); 
 
-			receptor.setMessageListener(this);
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -68,7 +65,7 @@ public class ReceptorMessageListener implements MessageListener {
 	public static void main(String[] args) {
 		System.out.println("Hilo main: "+Thread.currentThread().getName());
 		ReceptorMessageListener rml = new ReceptorMessageListener();
-		rml.metodo();
+		rml.conectar();
 		
 		JOptionPane.showMessageDialog(null, ".oOo.oOo.oOo.");
 		

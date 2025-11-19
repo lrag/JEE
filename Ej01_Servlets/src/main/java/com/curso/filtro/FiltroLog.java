@@ -38,7 +38,6 @@ public class FiltroLog extends HttpFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		
-		
 		System.out.println("DESPUES");
 	}
 

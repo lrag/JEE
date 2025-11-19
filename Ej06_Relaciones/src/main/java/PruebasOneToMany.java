@@ -58,6 +58,7 @@ public class PruebasOneToMany {
 		//que escojamos para hacer el persist...
 		//em.persist(c); //Se insertan tb los pedidos en una especie de proceso batch
 		em.persist(p2);
+		//em.persist(db);
 		
 		em.getTransaction().commit(); 
 		em.close();		
@@ -75,12 +76,13 @@ public class PruebasOneToMany {
 		System.out.println(c2.getNombre());
 		System.out.println(c2.getDatosBancarios().getBanco());
 
-		//c2.getPedidos().size();
+		c2.getPedidos().size();
+		
 		em.close();
 		
 		for(Pedido pAux: c2.getPedidos()){
 			System.out.println(pAux.getCodigo());
-		}		
+		}			
 		
 		emf.close();
 		

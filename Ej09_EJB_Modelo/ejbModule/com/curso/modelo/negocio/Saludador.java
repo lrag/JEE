@@ -22,6 +22,7 @@ public class Saludador implements SaludadorLocal {
     	System.out.println("Instanciando Saludador");
     }
 
+    /////////////////////////////////////////////////////////////
     private String nombre;
     public void setNombre(String nombre) {
     	this.nombre = nombre;
@@ -29,8 +30,7 @@ public class Saludador implements SaludadorLocal {
     public String getSaludo() {
     	return "Bo que pa, que pa, que pacha "+nombre; 
     }
-    
-    
+    /////////////////////////////////////////////////////////////
     
     public synchronized String saludar(String nombre) {
     	System.out.println("Saludando a "+nombre+" ("+this+")");

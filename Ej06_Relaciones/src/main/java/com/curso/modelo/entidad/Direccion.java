@@ -5,8 +5,10 @@ import jakarta.persistence.Embeddable;
 
 //No tiene @Entity
 //No es una entidad: no tiene id
+//No hace falta que sea final
 //Puede tener cualquier anotación relacionada con las columnas
 //Hay que darla de alta en el persistence.xml
+//debe ser una java bean
 @Embeddable
 public class Direccion {
 

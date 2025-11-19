@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SVAOP extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject private GestorClientes gestorClientes;
-	@Inject private GestorFacturas gestorFacturas;
+	@Inject private ServicioClientes gestorClientes;
+	@Inject private ServicioFacturas gestorFacturas;
 	
     public SVAOP() {
         super();
@@ -27,6 +27,9 @@ public class SVAOP extends HttpServlet {
 		gestorFacturas.insertar("FACTURA 1");
 		gestorFacturas.borrar("FACTURA 2");
 		
+		response.setContentType("text/html");
+		response.getWriter().println("<marquee><font color='lightBlue'><h1>Peticion procesada</h1></font></marquee>");
+				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

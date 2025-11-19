@@ -43,7 +43,6 @@ public class FactoriaFormateador {
 	}
 	*/
 	
-	/*
 	@Produces
 	@QFormateador
 	@RequestScoped
@@ -56,8 +55,8 @@ public class FactoriaFormateador {
 			default : return null;		
 		}		
 	}
-	*/
 
+	/*
 	@Produces
 	@QFormateador
 	//@RequestScoped
@@ -73,10 +72,7 @@ public class FactoriaFormateador {
 			case "Excel" : return formateadorExcel; //Este no tiene 'dato'
 			default : return null;		
 		}	
-	}	
-	
-	
-	
-	
+	}
+	*/	
 
 }

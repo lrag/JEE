@@ -39,6 +39,7 @@ public class SVEventos extends HttpServlet {
 		eventoString.fire("Evento!");
 		eventoInteger.fire(42);
 		eventoPedido.fire(new Pedido("PEDIDO"));
+		//eventoPedidoImportante.fire(new Pedido("PEDIDO IMPORTANTE"));
 		eventoPedidoImportante.fireAsync(new Pedido("PEDIDO IMPORTANTE"));
 		
 		response.getWriter().println("<h1>Peticion procesada</h1>");

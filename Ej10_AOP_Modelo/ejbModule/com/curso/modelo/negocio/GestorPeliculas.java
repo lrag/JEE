@@ -24,7 +24,7 @@ import com.curso.modelo.persistencia.PeliculaDao;
 //@LocalBean
 @Interceptors({ InterceptorLog.class , InterceptorCronometro.class })
 public class GestorPeliculas implements GestorPeliculasLocal {
-
+	
 	@Resource
 	private SessionContext sCtx;
 	
@@ -53,12 +53,14 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
 	public void insertar(Pelicula pelicula) throws PeliculaException {
 		
+		////
+		
 		System.out.print("GestorPeliculas, insertar:"+pelicula.getTitulo()+"...");
 		
 		if( pelicula.getTitulo() == null) {
 			System.out.println("ERROR!");
 			//Set rollback only es definitio: no podemos retractarnos
-			//sCtx.setRollbackOnly();
+			sCtx.setRollbackOnly();
 			//boolean x = sCtx.getRollbackOnly();
 			//return;
 			
@@ -67,6 +69,9 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 		}
 		System.out.println("OK");
 		peliculaDao.insertar(pelicula);
+		
+		
+		//
 	}
 	
 	/*
@@ -78,6 +83,7 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 	}
 	*/
 	
+	//@Interceptors({ InterceptorLog.class, InterceptorCronometro.class })
 	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertarPeliculas(List<Pelicula> peliculas) throws PeliculaException{
 		
@@ -105,6 +111,7 @@ public class GestorPeliculas implements GestorPeliculasLocal {
 			
 			//Y podemos (la mejor opción) obtener la referencia al EJBObje con @EJB
 			try {
+				//ejbObj.insertar(pAux);
 				gestorPeliculas_EJBObj.insertar(pAux);
 			} catch (PeliculaException e) {
 				System.out.println("Una película no se ha insertado");
@@ -192,13 +199,17 @@ class InterceptorTransacciones {
 				em.getTransaction.commit()
 			}		
 		} catch (Exception e){
-			em.getTransaction.rollback();
-			throw
+			if(la excepción es de rollback){
+				em.getTransaction.rollback();
+			} else {
+				em.getTransaction.commit()
+			}			
+			throw e
 		}
 		
+		return retorno	
 	}
 	
-	return retorno	
 }
 */
 

@@ -8,7 +8,6 @@ public class InterceptorCronometro {
 	@AroundInvoke
 	public Object cronometrar(InvocationContext iCtx) throws Exception {
 		
-		
 		long inicio = System.currentTimeMillis();
 
 		Object retorno = iCtx.proceed();

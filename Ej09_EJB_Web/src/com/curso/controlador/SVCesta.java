@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.curso.modelo.negocio.GestorPedidosLocal;
+import com.curso.modelo.negocio.ServicioPedidosLocal;
 
 @WebServlet("/SVCesta")
 public class SVCesta extends HttpServlet {
@@ -22,7 +22,7 @@ public class SVCesta extends HttpServlet {
 	//No podemos inyectar así un EJB de sesión con estado porque
 	//un servlet es un singleton
 	//@EJB
-	private GestorPedidosLocal gpl;
+	private ServicioPedidosLocal gpl;
 	
     public SVCesta() {
         super();
@@ -31,13 +31,12 @@ public class SVCesta extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession sesion = request.getSession(true);
-		GestorPedidosLocal gpl = (GestorPedidosLocal) sesion.getAttribute("gestorPedidos");
+		ServicioPedidosLocal gpl = (ServicioPedidosLocal) sesion.getAttribute("servicioPedidos");
 		if(gpl == null) {
-			//
 			try {
 				Context ic = new InitialContext();
-				gpl = (GestorPedidosLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosLocal");
-				sesion.setAttribute("gestorPedidos", gpl);
+				gpl = (ServicioPedidosLocal) ic.lookup("java:global/Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/ServicioPedidos!com.curso.modelo.negocio.ServicioPedidosLocal");
+				sesion.setAttribute("servicioPedidos", gpl);
 			} catch (NamingException e) {
 				e.printStackTrace();
 			} 
@@ -53,7 +52,7 @@ public class SVCesta extends HttpServlet {
 		String producto = request.getParameter("producto");
 		
 		HttpSession sesion = request.getSession();
-		GestorPedidosLocal gpl = (GestorPedidosLocal) sesion.getAttribute("gestorPedidos");
+		ServicioPedidosLocal gpl = (ServicioPedidosLocal) sesion.getAttribute("servicioPedidos");
 		gpl.addProducto(producto);
 		
 		response.sendRedirect("SVCesta");

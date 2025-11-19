@@ -5,7 +5,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import com.curso.modelo.negocio.GestorPedidosRemoto;
+import com.curso.modelo.negocio.ServicioPedidosRemoto;
 
 
 public class AplicacionCliente {
@@ -28,7 +28,7 @@ public class AplicacionCliente {
 		InitialContext ic = new InitialContext(jndiProperties);		
 		System.out.println(ic);
 		
-		GestorPedidosRemoto gp = (GestorPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/GestorPedidos!com.curso.modelo.negocio.GestorPedidosRemoto?stateful");
+		ServicioPedidosRemoto gp = (ServicioPedidosRemoto) ic.lookup("ejb:Ej09_EJB_EAR-0.0.1-SNAPSHOT/Ej09_EJB_Modelo/ServicioPedidos!com.curso.modelo.negocio.ServicioPedidosRemoto?stateful");
 		
 		gp.addProducto("EJB P1");
 		gp.addProducto("P2");
@@ -40,6 +40,7 @@ public class AplicacionCliente {
 		for(String p: cesta){
 			System.out.println(p);
 		}
+		gp.comprar();
 		
 		
 	}

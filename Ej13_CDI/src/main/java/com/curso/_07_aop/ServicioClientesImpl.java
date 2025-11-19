@@ -5,23 +5,23 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 @Log
 @Cronometro
-public class GestorFacturasImpl implements GestorFacturas {
+public class ServicioClientesImpl implements ServicioClientes {
 
 	@Override
-	public void insertar(String factura){
-		System.out.println("Insertando fra:"+factura);
+	public void insertar(String cliente){
+		System.out.println("Insertando cli:"+cliente);
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 	@Override
-	public void borrar(String factura){
-		System.out.println("Borrando fra:"+factura);
+	public void borrar(String cliente){
+		System.out.println("Borrando cli:"+cliente);
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}		

@@ -1,6 +1,6 @@
 package com.curso._07_aop;
 
-public interface GestorClientes {
+public interface ServicioClientes {
 
 	void insertar(String cliente);
 

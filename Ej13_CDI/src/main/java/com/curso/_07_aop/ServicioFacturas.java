@@ -1,6 +1,6 @@
 package com.curso._07_aop;
 
-public interface GestorFacturas {
+public interface ServicioFacturas {
 
 	void insertar(String factura);
 

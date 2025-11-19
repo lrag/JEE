@@ -28,7 +28,7 @@ public class GestorPeliculas_Limpio implements GestorPeliculasLocal {
 	@EJB private GestorPeliculasLocal gestorPeliculas_EJBObj;
 
 	@Override
-	@Transactional(value=TxType.REQUIRES_NEW, rollbackOn= { PeliculaException.class } )
+	@Transactional(value=TxType.REQUIRED, rollbackOn= { PeliculaException.class } )
 	public void insertar(Pelicula pelicula) throws PeliculaException {
 		System.out.print("GestorPeliculas, insertar:"+pelicula.getTitulo()+"...");
 		
